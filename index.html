@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AlpineJS</title>
+    <style>
+      * {
+        margin: 0;
+      }
+      body {
+        display: grid;
+        gap: 2rem;
+        padding: 4rem;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      }
+      ul {
+        padding: 1rem;
+      }
+      button {
+        font: inherit;
+      }
+      .grid {
+        display: grid;
+        gap: 1.5rem;
+      }
+      .bg-red {
+        background-color: red;
+        color: white;
+      }
+      .bg-black {
+        background-color: black;
+        color: white;
+      }
+      [x-cloak] { display: none !important; }
+      .accordion {
+        & > * + * {
+          margin-block-start: 1rem;
+        }
+        & button {
+          width: 100%;
+          display: grid;
+          grid-template-columns: 1fr 2ch;
+          padding: 0;
+          background: none;
+          border: none;
+          text-align: initial;
+        }
+      }
+      .todos {
+        max-width: 20rem;
+        padding: 2rem;
+        background-color: #222;
+        color: white;
+
+        & :is(button, [type='checkbox']) {
+          cursor: pointer;
+        }
+
+        & form {
+          display: grid;
+          grid-template-columns: 1fr 4ch;
+          & > * {
+            padding: 0.5rem;
+          }
+        }
+
+        & .list {
+          display: grid;
+          grid-template-columns: 4ch 1fr 4ch;
+          & > * {
+            padding: 0.5rem;
+          }
+        }
+
+        & .completed {
+          text-decoration: line-through;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      document.addEventListener('alpine:init', () => {
+        console.log('Alpine Initialized')
+
+        Alpine.store('darkMode', false)
+
+        Alpine.data('dropdown', () => ({
+          open: false,
+
+          toggle() {
+            this.open = !this.open
+          },
+        }))
+        Alpine.data('dropdown', () => ({
+          open: false,
+
+          toggle() {
+            this.open = !this.open
+          },
+        }))
+      })
+    </script>
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"
+      defer
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+      defer
+    ></script>
+
+    <h2>Todo List</h2>
+    <div class="todos grid" x-data="{todos: $persist([]), value: ''}" x-cloak>
+      <form @submit.prevent="todos.push({name: value, completed: false}); value = ''">
+        <input type="text" x-model="value" placeholder="Add new item..." />
+        <button>+</button>
+      </form>
+      <template x-for="(todo, idx) in todos">
+        <div class="list" x-id="['checkbox']">
+          <input :id="$id('checkbox')" type="checkbox" x-model="todo.completed" />
+          <label
+            :for="$id('checkbox')"
+            x-text="todo.name"
+            :class="todo.completed && 'completed'"
+          ></label>
+          <button @click="todos = todos.filter(x => x !== todo)">X</button>
+        </div>
+      </template>
+      <div x-show="todos.length">
+        <span x-text="todos.filter(x => x.completed).length"></span> /
+        <span x-text="todos.length"></span>
+        <span x-text="todos.length === 1 ? 'todo' : 'todos'"></span>
+        <span>completed</span>
+      </div>
+      <div x-show="todos.length">
+        <button @click="todos = []">Clear All</button>
+      </div>
+    </div>
+
+    <h2>Accordion</h2>
+    <div class="accordion" x-data="{ expanded: false }">
+      <button @click="expanded = !expanded" :aria-expanded="expanded">
+        <h3>This is the question.</h3>
+        <span x-text="expanded ? '−' : '+'"></span>
+      </button>
+
+      <div x-show="expanded" x-collapse>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit harum veniam
+        quibusdam atque, porro, sed voluptatem sapiente alias non reprehenderit ratione
+        enim cum suscipit, perferendis commodi amet. Earum qui atque et sequi?
+      </div>
+    </div>
+
+    <!-- <h1 x-data="{ message: 'I ❤️ Alpine' }" x-text="message"></h1>
+      
+    <div x-data="{ count: 0 }">
+      <button @click="count--">-</button>
+      <span x-text="count"></span>
+      <button @click="count++">+</button>
+      Doubled: <span x-text="count * 2"></span>
+    </div>
+
+    <div x-data="{ open: false }">
+      <button @click="open = !open">Toggle</button>
+
+      <div x-show="open" @click.outside="open = false">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae autem assumenda
+        molestiae nobis, vel dolorum fuga consequatur animi perferendis possimus ipsa
+        ipsam rem illo voluptatum nisi doloribus adipisci incidunt iusto.
+      </div>
+    </div>
+
+    <div x-data="dropdown">
+      <button @click="toggle">Expand</button>
+      <div x-show="open">Content...</div>
+    </div>
+
+    <div x-data="dropdown">
+      <button @click="toggle">Expand</button>
+      <div x-show="open">Some Other Content...</div>
+    </div>
+
+    <div>
+      <button x-data="{ red: false }" :class="red && 'bg-red'" @click="red = !red">
+        Toggle Red
+      </button>
+    </div> -->
+
+    <h2>Posts</h2>
+    <div
+      class="grid"
+      x-data="{ posts: [] }"
+      x-init="{ posts } = await (await fetch('https://dummyjson.com/posts?limit=5')).json()"
+    >
+      <template x-for="post in posts">
+        <div class="grid">
+          <h3 x-text="post.title"></h3>
+          <div x-text="post.body"></div>
+        </div>
+      </template>
+    </div>
+
+    <!-- <button x-data @click="$store.darkMode = !$store.darkMode">Toggle Dark Mode</button>
+
+    <div x-data :class="$store.darkMode && 'bg-black'">kmlkmlkm</div> -->
+  </body>
+</html>
