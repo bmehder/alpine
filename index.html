@@ -28,81 +28,83 @@
       defer
     ></script>
   </head>
+
   <body>
-    <h1>
-      AlpineJS Demo
-      <a href="https://github.com/bmehder/alpine" target="_blank">
-        <iconify-icon icon="devicon:github"></iconify-icon>
-      </a>
-    </h1>
-
-    <section class="flow">
-      <h2>Todo List</h2>
-      <div class="todos grid" x-data="{todos: $persist([]), value: ''}" x-cloak>
-        <form @submit.prevent="todos.push({name: value, completed: false}); value = ''">
-          <input type="text" x-model="value" placeholder="Add new item..." />
-          <button>+</button>
-        </form>
-        <template x-for="(todo, idx) in todos">
-          <div class="list" x-id="['checkbox']">
-            <input :id="$id('checkbox')" type="checkbox" x-model="todo.completed" />
-            <label
-              :for="$id('checkbox')"
-              x-text="todo.name"
-              :class="todo.completed && 'completed'"
-            ></label>
-            <button @click="todos = todos.filter(x => x !== todo)">X</button>
-          </div>
-        </template>
-        <div x-show="todos.length">
-          <span x-text="todos.filter(x => x.completed).length"></span> /
-          <span x-text="todos.length"></span>
-          <span x-text="todos.length === 1 ? 'todo' : 'todos'"></span>
-          <span>completed</span>
-        </div>
-        <div x-show="todos.length">
-          <button @click="todos = []">Clear All</button>
-        </div>
-      </div>
-    </section>
+    <main>
+      <h1>
+        AlpineJS Demo
+        <a href="https://github.com/bmehder/alpine" target="_blank">
+          <iconify-icon icon="devicon:github"></iconify-icon>
+        </a>
+      </h1>
     
-    <section class="flow">
-      <h2>Posts</h2>
-      <p style="font-style: italic;">Fetched via DummyJSON REST API</p>
-      <div
-        class="grid"
-        x-data="{ posts: [], loading: true }"
-        x-init="(
-          posts = fetch('https://dummyjson.com/posts?limit=5')
-            .then(res => res.json())
-            .then(data => data.posts)
-            .catch(console.error)
-            .finally(() => loading = false)
-        )"
-      >
-        <p x-show="loading">Fetching posts from REST API...</p>
-        <template x-for="post in posts">
-          <div class="grid">
-            <h3 x-text="post.title"></h3>
-            <div x-text="post.body"></div>
+      <section class="flow">
+        <h2>Todo List</h2>
+        <div class="todos grid" x-data="{todos: $persist([]), value: ''}" x-cloak>
+          <form @submit.prevent="todos.push({name: value, completed: false}); value = ''">
+            <input type="text" x-model="value" placeholder="Add new item..." />
+            <button>+</button>
+          </form>
+          <template x-for="(todo, idx) in todos">
+            <div class="list" x-id="['checkbox']">
+              <input :id="$id('checkbox')" type="checkbox" x-model="todo.completed" />
+              <label
+                :for="$id('checkbox')"
+                x-text="todo.name"
+                :class="todo.completed && 'completed'"
+              ></label>
+              <button @click="todos = todos.filter(x => x !== todo)">X</button>
+            </div>
+          </template>
+          <div x-show="todos.length">
+            <span x-text="todos.filter(x => x.completed).length"></span> /
+            <span x-text="todos.length"></span>
+            <span x-text="todos.length === 1 ? 'todo' : 'todos'"></span>
+            <span>completed</span>
           </div>
-        </template>
-      </div>
-    </section>
-
-    <section class="flow">
-      <h2>Accordion</h2>
-      <div class="accordion" x-data="{ expanded: false }">
-        <button @click="expanded = !expanded" :aria-expanded="expanded">
-          <h3>This is the question.</h3>
-          <span x-text="expanded ? '−' : '+'"></span>
-        </button>
-        <div x-show="expanded" x-collapse>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit harum veniam
-          quibusdam atque, porro, sed voluptatem sapiente alias non reprehenderit ratione
-          enim cum suscipit, perferendis commodi amet. Earum qui atque et sequi?
+          <div x-show="todos.length">
+            <button @click="todos = []">Clear All</button>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+      
+      <section class="flow">
+        <h2>Posts - Fetched via DummyJSON REST API</h2>
+        <div
+          class="grid"
+          x-data="{ posts: [], loading: true }"
+          x-init="
+            posts = fetch('https://dummyjson.com/posts?limit=5')
+              .then(res => res.json())
+              .then(data => data.posts)
+              .catch(console.error)
+              .finally(() => loading = false)
+          "
+        >
+          <div x-show="loading" class="loader"></div>
+          <template x-for="post in posts">
+            <div class="grid">
+              <h3 x-text="post.title"></h3>
+              <div x-text="post.body"></div>
+            </div>
+          </template>
+        </div>
+      </section>
+      
+      <section class="flow">
+        <h2>Accordion</h2>
+        <div class="accordion" x-data="{ expanded: false }">
+          <button @click="expanded = !expanded" :aria-expanded="expanded">
+            <h3>This is the question.</h3>
+            <span x-text="expanded ? '−' : '+'"></span>
+          </button>
+          <div x-show="expanded" x-collapse>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit harum veniam
+            quibusdam atque, porro, sed voluptatem sapiente alias non reprehenderit
+            ratione enim cum suscipit, perferendis commodi amet. Earum qui atque et sequi?
+          </div>
+        </div>
+      </section>
+    </main>
   </body>
 </html>

@@ -4,7 +4,7 @@
 }
 
 /* Elements */
-body {
+main {
   display: grid;
   gap: 2rem;
   padding: 4rem;
@@ -48,6 +48,23 @@ h1 {
   background-color: black;
   color: white;
 }
+.loader {
+  border: 0.5rem solid #f3f3f3; /* Light grey */
+  border-top: 0.5rem solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
 /* Components */
 .accordion {
@@ -57,7 +74,7 @@ h1 {
   & > * + * {
     margin-block-start: 1rem;
   }
-  
+
   & button {
     width: 100%;
     display: grid;
@@ -82,7 +99,7 @@ h1 {
   & form {
     display: grid;
     grid-template-columns: 1fr 4ch;
-    
+
     & > * {
       padding: 0.5rem;
     }
