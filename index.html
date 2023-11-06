@@ -65,14 +65,22 @@
         </div>
       </div>
     </section>
-
+    
     <section class="flow">
       <h2>Posts</h2>
+      <p style="font-style: italic;">Fetched via DummyJSON REST API</p>
       <div
         class="grid"
-        x-data="{ posts: [] }"
-        x-init="{ posts } = await (await fetch('https://dummyjson.com/posts?limit=5')).json()"
+        x-data="{ posts: [], loading: true }"
+        x-init="(
+          posts = fetch('https://dummyjson.com/posts?limit=5')
+            .then(res => res.json())
+            .then(data => data.posts)
+            .catch(console.error)
+            .finally(() => loading = false)
+        )"
       >
+        <p x-show="loading">Fetching posts from REST API...</p>
         <template x-for="post in posts">
           <div class="grid">
             <h3 x-text="post.title"></h3>
