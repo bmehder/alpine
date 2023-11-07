@@ -138,8 +138,9 @@
         </div>
       </section>
 
-      <section class="flow" x-data="{...tabs, index: 0}">
+      <section class="flow" x-data="{...tabs, index: $persist(0)}">
         <h2>Tabs</h2>
+
         <div class="tabs">
           <template x-for="(tab, idx) in tabs">
             <button
@@ -167,6 +168,7 @@
               cultivated in Kent by Regan's great-grandfather, Bernard Champion, in 1893.
             </div>
           </div>
+
           <div class="accordion" x-data="{ expanded: false }">
             <button class="flex" @click="expanded = !expanded" :aria-expanded="expanded">
               <h3>What was the longest tennis match in history?</h3>
@@ -177,6 +179,7 @@
               over three days between John Isner and Nicolas Mahut at 2010 Wimbledon.
             </div>
           </div>
+          
           <div class="accordion" x-data="{ expanded: false }">
             <button class="flex" @click="expanded = !expanded" :aria-expanded="expanded">
               <h3>Has anyone ever won a golden set in tennis?</h3>
