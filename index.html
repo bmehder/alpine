@@ -8,11 +8,25 @@
 
     <link rel="stylesheet" href="app.css" />
 
-    <!-- <script>
-      document.addEventListener('alpine:init', () => {
-        Alpine.store('darkMode', false)
-      })
-    </script> -->
+    <script>
+      const tabs = [
+        {
+          name: 'Tab 1',
+          content:
+            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis commodi aliquid, laudantium aspernatur modi dolorem consequatur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis commodi aliquid, laudantium aspernatur modi dolorem consequatur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis commodi aliquid, laudantium aspernatur. Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+        },
+        {
+          name: 'Tab 2',
+          content:
+            'Dolor sit amet consectetur adipisicing elit. Debitis commodi aliquid, modi dolorem consequatur. Debitis commodi aliquid, modi dolorem consequatur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor sit amet consectetur adipisicing elit. Debitis commodi aliquid, modi dolorem consequatur. Debitis commodi aliquid, modi dolorem consequatur. Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+        },
+        {
+          name: 'Tab 3',
+          content:
+            'Debitis commodi aliquid, modi dolorem consequatur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor sit amet consectetur adipisicing elit. Debitis commodi aliquid, modi dolorem consequatur. Debitis commodi aliquid, modi dolorem consequatur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor sit amet consectetur adipisicing elit. Debitis commodi aliquid, modi dolorem consequatur.',
+        },
+      ]
+    </script>
 
     <script
       defer
@@ -38,19 +52,23 @@
         <h1>AlpineJS Demo</h1>
 
         <div class="flex">
-          <a href="https://github.com/bmehder/alpine" target="_blank">
+          <a
+            href="https://github.com/bmehder/alpine"
+            target="_blank"
+            style="line-height: 0"
+          >
             <iconify-icon width="2rem" icon="codicon:github"></iconify-icon>
           </a>
-          
+
           <label class="switch">
             <input type="checkbox" @click="darkMode = !darkMode" :checked="darkMode" />
             <span class="slider round"></span>
           </label>
-          
+
           <template x-if="!darkMode">
             <iconify-icon width="2rem" icon="ph:sun"></iconify-icon>
           </template>
-          
+
           <template x-if="darkMode">
             <iconify-icon width="2rem" icon="fluent-mdl2:clear-night"></iconify-icon>
           </template>
@@ -60,7 +78,12 @@
       <section class="flow">
         <h2>Todo List</h2>
         <div class="todos grid" x-data="{todos: $persist([]), value: ''}" x-cloak>
-          <form @submit.prevent="todos.push({name: value, completed: false}); value = ''">
+          <form
+            @submit.prevent="
+              value.trim().length && todos.push({name: value, completed: false})
+              value = ''
+          "
+          >
             <input type="text" x-model="value" placeholder="Add new item..." />
             <button>+</button>
           </form>
@@ -72,7 +95,9 @@
                 x-text="todo.name"
                 :class="todo.completed && 'completed'"
               ></label>
-              <button @click="todos = todos.filter(x => x !== todo)">X</button>
+              <button @click="todos = todos.filter(x => x !== todo)">
+                <iconify-icon width="1.5rem" icon="iconoir:xbox-x"></iconify-icon>
+              </button>
             </div>
           </template>
           <div x-show="todos.length">
@@ -94,37 +119,76 @@
           class="grid"
           x-data="{ posts: [], loading: true }"
           x-init="
-            posts = fetch('https://dummyjson.com/posts?limit=5')
+            posts = fetch('https://jsonplaceholder.typicode.com/posts?_limit=6')
               .then(res => res.json())
-              .then(data => data.posts)
               .catch(console.error)
               .finally(() => loading = false)
           "
         >
           <div x-show="loading" class="spinner"></div>
 
-          <template x-for="post in posts">
-            <div class="grid">
-              <h3 x-text="post.title"></h3>
-              <div x-text="post.body"></div>
-            </div>
+          <div class="auto-grid">
+            <template x-for="post in posts">
+              <div class="grid card">
+                <h3 x-text="post.title"></h3>
+                <div x-text="post.body"></div>
+              </div>
+            </template>
+          </div>
+        </div>
+      </section>
+
+      <section class="flow" x-data="{...tabs, index: 0}">
+        <h2>Tabs</h2>
+        <div class="tabs">
+          <template x-for="(tab, idx) in tabs">
+            <button
+              x-text="tab.name"
+              :class="index === idx && 'active'"
+              @click="index = idx"
+            ></button>
           </template>
+          <div x-text="tabs[index].content"></div>
         </div>
       </section>
 
       <section class="flow">
         <h2>Accordion</h2>
 
-        <div class="accordion" x-data="{ expanded: false }">
-          <button @click="expanded = !expanded" :aria-expanded="expanded">
-            <h3>This is the question.</h3>
-            <div x-text="expanded ? '−' : '+'"></div>
-          </button>
-
-          <div x-show="expanded" x-cloak x-collapse>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit harum veniam
-            quibusdam atque, porro, sed voluptatem sapiente alias non reprehenderit
-            ratione enim cum suscipit, perferendis commodi amet. Earum qui atque et sequi?
+        <div>
+          <div class="accordion" x-data="{ expanded: false }">
+            <button class="flex" @click="expanded = !expanded" :aria-expanded="expanded">
+              <h3>How many strawberries are served at Wimbledon each year?</h3>
+              <div x-text="expanded ? '−' : '+'"></div>
+            </button>
+            <div x-show="expanded" x-cloak x-collapse>
+              On average, about 170,000 strawberries are transported to Wimbledon each day
+              during the tournament. It was this kind of strawberry that was first
+              cultivated in Kent by Regan's great-grandfather, Bernard Champion, in 1893.
+            </div>
+          </div>
+          <div class="accordion" x-data="{ expanded: false }">
+            <button class="flex" @click="expanded = !expanded" :aria-expanded="expanded">
+              <h3>What was the longest tennis match in history?</h3>
+              <div x-text="expanded ? '−' : '+'"></div>
+            </button>
+            <div x-show="expanded" x-cloak x-collapse>
+              The longest tennis match lasted for 11 hours and 5 minutes and was contested
+              over three days between John Isner and Nicolas Mahut at 2010 Wimbledon.
+            </div>
+          </div>
+          <div class="accordion" x-data="{ expanded: false }">
+            <button class="flex" @click="expanded = !expanded" :aria-expanded="expanded">
+              <h3>Has anyone ever won a golden set in tennis?</h3>
+              <div x-text="expanded ? '−' : '+'"></div>
+            </button>
+            <div x-show="expanded" x-cloak x-collapse>
+              It has also happened a number of times in the pre-tournament qualifier of the
+              lowest-level events. Bill Scanlon had a golden second set in his win over
+              Marcos Hocevar at the 1983 Delray Beach WCT event. Yaroslava Shvedova had a
+              golden first set in her win over Sara Errani at the 2012 Wimbledon
+              Championships.
+            </div>
           </div>
         </div>
       </section>
