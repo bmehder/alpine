@@ -197,7 +197,8 @@
         </div>
       </section>
 
-      <section>
+      <section class="flow">
+        <h2>Modal</h2>
         <div class="modal" x-data="{open: false}" @keyup.escape="open = false" x-cloak>
           <button @click="open = true">Toggle Modal</button>
           <div class="modal__backdrop" x-show="open === true">
