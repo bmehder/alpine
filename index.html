@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="app.css" />
 
     <script>
+      document.addEventListener('alpine:init', () => {
+        Alpine.store('isModalOpen', false)
+      })
+    </script>
+
+    <script>
       const tabs = [
         {
           name: 'Tab 1',
@@ -48,7 +54,7 @@
 
   <body x-data="{darkMode: $persist(false)}" :class="darkMode && 'dark'">
     <main>
-      <header class="flex">
+      <header class="flex header">
         <h1>AlpineJS Demo</h1>
 
         <div class="flex">
@@ -197,23 +203,28 @@
         </div>
       </section>
 
-      <section class="flow">
+      <section class="flow" @keyup.escape="$store.isModalOpen = false">
         <h2>Modal</h2>
-        <div class="modal" x-data="{open: false}" @keyup.escape="open = false" x-cloak>
-          <button @click="open = true">Toggle Modal</button>
-          <div class="modal__backdrop" x-show="open === true">
+        
+        <button @click="$store.isModalOpen = true">Toggle Modal</button>
+
+        <div
+          class="modal"
+          x-cloak
+        >
+          <div class="modal__backdrop" x-show="$store.isModalOpen === true">
             <div
               class="modal__content flow"
-              @click.outside="open = false"
-              x-show="open === true"
+              @click.outside="$store.isModalOpen = false"
+              x-show="$store.isModalOpen === true"
               x-transition
             >
-              <div class="header">
+              <header class="flex">
                 <h2>Modal Content</h2>
-                <button @click="open = false">
+                <button @click="$store.isModalOpen = false">
                   <iconify-icon width="2rem" icon="iconoir:xbox-x"></iconify-icon>
                 </button>
-              </div>
+              </header>
               <p>
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi delectus
                 quas illo alias, ab mollitia beatae eligendi accusantium labore veniam

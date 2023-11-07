@@ -36,12 +36,13 @@ ul {
 button {
   font: inherit;
   border: none;
+  background-color: var(--accent);
 
   &:hover {
     cursor: pointer;
   }
 }
-header {
+.header {
   padding-block-end: 1rem;
   border-bottom: 4px solid var(--accent);
 }
@@ -174,6 +175,11 @@ a:visited {
 
   & button {
     padding: 1rem;
+    background-color: var(--light);
+
+    &.active {
+      background-color: var(--accent);
+    }
   }
 
   & div {
@@ -195,7 +201,8 @@ a:visited {
   }
 
   & .modal__content {
-    max-width: 60%;
+    max-width: 32rem;
+    margin-inline: 2rem;
     padding: 2rem;
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
