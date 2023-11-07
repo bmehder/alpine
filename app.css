@@ -1,3 +1,9 @@
+:root {
+  --light: #f1f1f1;
+  --dark: #242424;
+  --accent: #bada55;
+}
+
 /* Resets */
 * {
   margin: 0;
@@ -10,6 +16,7 @@ main {
   padding: 4rem;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  accent-color: var(--accent);
 }
 ul {
   padding: 1rem;
@@ -26,6 +33,9 @@ h1 {
   align-items: center;
   gap: 1rem;
 }
+a:visited {
+  color: unset;
+}
 
 /* Attributes */
 [x-cloak] {
@@ -37,20 +47,23 @@ h1 {
   display: grid;
   gap: 1.5rem;
 }
+.flex {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--gap, 1rem);
+}
 .flow > * + * {
-  margin-block-start: 1rem;
+  margin-block-start: 1.5rem;
 }
-.bg-red {
-  background-color: red;
-  color: white;
+.dark {
+  background-color: var(--dark);
+  color: var(--light);
 }
-.bg-black {
-  background-color: black;
-  color: white;
-}
-.loader {
-  border: 0.5rem solid #f3f3f3; /* Light grey */
-  border-top: 0.5rem solid #3498db; /* Blue */
+
+/* .Spinner */
+.spinner {
+  border: 0.5rem solid var(--light);
+  border-top: 0.5rem solid var(--accent);
   border-radius: 50%;
   width: 2rem;
   height: 2rem;
@@ -58,11 +71,8 @@ h1 {
 }
 
 @keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
+  to {
+    rotate: 360deg;
   }
 }
 
@@ -70,7 +80,9 @@ h1 {
 .accordion {
   max-width: 48em;
   padding: 1rem;
-  background-color: #f1f1f1;
+  background-color: var(--light);
+  color: var(--dark);
+
   & > * + * {
     margin-block-start: 1rem;
   }
@@ -89,8 +101,9 @@ h1 {
 .todos {
   max-width: 20rem;
   padding: 2rem;
-  background-color: #222;
+  background-color: var(--dark);
   color: white;
+  border: 1px solid lightgray;
 
   & :is(button, [type='checkbox']) {
     cursor: pointer;
@@ -116,4 +129,61 @@ h1 {
   & .completed {
     text-decoration: line-through;
   }
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }

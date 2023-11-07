@@ -8,6 +8,12 @@
 
     <link rel="stylesheet" href="app.css" />
 
+    <!-- <script>
+      document.addEventListener('alpine:init', () => {
+        Alpine.store('darkMode', false)
+      })
+    </script> -->
+
     <script
       defer
       src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"
@@ -23,21 +29,34 @@
       defer
     ></script>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
-      defer
-    ></script>
+    <script src="https://unpkg.com/alpinejs" defer></script>
   </head>
 
-  <body>
+  <body x-data="{darkMode: $persist(false)}" :class="darkMode && 'dark'">
     <main>
-      <h1>
-        AlpineJS Demo
-        <a href="https://github.com/bmehder/alpine" target="_blank">
-          <iconify-icon icon="devicon:github"></iconify-icon>
-        </a>
-      </h1>
-    
+      <header class="flex">
+        <h1>AlpineJS Demo</h1>
+
+        <div class="flex">
+          <a href="https://github.com/bmehder/alpine" target="_blank">
+            <iconify-icon width="2rem" icon="codicon:github"></iconify-icon>
+          </a>
+          
+          <label class="switch">
+            <input type="checkbox" @click="darkMode = !darkMode" :checked="darkMode" />
+            <span class="slider round"></span>
+          </label>
+          
+          <template x-if="!darkMode">
+            <iconify-icon width="2rem" icon="ph:sun"></iconify-icon>
+          </template>
+          
+          <template x-if="darkMode">
+            <iconify-icon width="2rem" icon="fluent-mdl2:clear-night"></iconify-icon>
+          </template>
+        </div>
+      </header>
+
       <section class="flow">
         <h2>Todo List</h2>
         <div class="todos grid" x-data="{todos: $persist([]), value: ''}" x-cloak>
@@ -45,7 +64,7 @@
             <input type="text" x-model="value" placeholder="Add new item..." />
             <button>+</button>
           </form>
-          <template x-for="(todo, idx) in todos">
+          <template x-for="todo in todos">
             <div class="list" x-id="['checkbox']">
               <input :id="$id('checkbox')" type="checkbox" x-model="todo.completed" />
               <label
@@ -67,9 +86,10 @@
           </div>
         </div>
       </section>
-      
+
       <section class="flow">
         <h2>Posts - Fetched via DummyJSON REST API</h2>
+
         <div
           class="grid"
           x-data="{ posts: [], loading: true }"
@@ -81,7 +101,8 @@
               .finally(() => loading = false)
           "
         >
-          <div x-show="loading" class="loader"></div>
+          <div x-show="loading" class="spinner"></div>
+
           <template x-for="post in posts">
             <div class="grid">
               <h3 x-text="post.title"></h3>
@@ -90,15 +111,17 @@
           </template>
         </div>
       </section>
-      
+
       <section class="flow">
         <h2>Accordion</h2>
+
         <div class="accordion" x-data="{ expanded: false }">
           <button @click="expanded = !expanded" :aria-expanded="expanded">
             <h3>This is the question.</h3>
-            <span x-text="expanded ? '−' : '+'"></span>
+            <div x-text="expanded ? '−' : '+'"></div>
           </button>
-          <div x-show="expanded" x-collapse>
+
+          <div x-show="expanded" x-cloak x-collapse>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit harum veniam
             quibusdam atque, porro, sed voluptatem sapiente alias non reprehenderit
             ratione enim cum suscipit, perferendis commodi amet. Earum qui atque et sequi?
