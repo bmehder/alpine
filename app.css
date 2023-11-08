@@ -42,14 +42,6 @@ button {
     cursor: pointer;
   }
 }
-.header {
-  padding-block-end: 1rem;
-  border-bottom: 4px solid var(--accent);
-
-  & a {
-    line-height: 0;
-  }
-}
 h1 {
   display: flex;
   align-items: center;
@@ -62,6 +54,16 @@ a {
 /* Attributes */
 [x-cloak] {
   display: none !important;
+}
+
+/* Main Header  */
+.header {
+  padding-block-end: 1rem;
+  border-bottom: 4px solid var(--accent);
+  
+  & a {
+    line-height: 0;
+  }
 }
 
 /* Utilitities */
