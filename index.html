@@ -14,55 +14,23 @@
       })
     </script>
 
-    <script>
-      const tabs = [
-        {
-          name: 'Tab 1',
-          content:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis commodi aliquid, laudantium aspernatur modi dolorem consequatur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis commodi aliquid, laudantium aspernatur modi dolorem consequatur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis commodi aliquid, laudantium aspernatur. Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-        },
-        {
-          name: 'Tab 2',
-          content:
-            'Dolor sit amet consectetur adipisicing elit. Debitis commodi aliquid, modi dolorem consequatur. Debitis commodi aliquid, modi dolorem consequatur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor sit amet consectetur adipisicing elit. Debitis commodi aliquid, modi dolorem consequatur. Debitis commodi aliquid, modi dolorem consequatur. Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-        },
-        {
-          name: 'Tab 3',
-          content:
-            'Debitis commodi aliquid, modi dolorem consequatur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor sit amet consectetur adipisicing elit. Debitis commodi aliquid, modi dolorem consequatur. Debitis commodi aliquid, modi dolorem consequatur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor sit amet consectetur adipisicing elit. Debitis commodi aliquid, modi dolorem consequatur.',
-        },
-      ]
+    <script type="module">
+      import 'https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js'
+      import 'https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js'
+      import 'https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js'
+      import 'https://cdn.jsdelivr.net/npm/alpinejs@3.13.2/dist/cdn.min.js'
     </script>
-
-    <script
-      defer
-      src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"
-    ></script>
-
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"
-    ></script>
-
-    <script
-      src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"
-      defer
-    ></script>
-
-    <script src="https://unpkg.com/alpinejs" defer></script>
+    
+    <script src="/tabs-data.js"></script>
   </head>
 
-  <body x-data="{darkMode: $persist(false)}" :class="darkMode && 'dark'">
+  <body x-data="{darkMode: $persist(false)}" :class="darkMode && 'dark'" x-cloak>
     <main>
       <header class="flex header">
         <h1>AlpineJS Demo</h1>
 
         <div class="flex">
-          <a
-            href="https://github.com/bmehder/alpine"
-            target="_blank"
-            style="line-height: 0"
-          >
+          <a href="https://github.com/bmehder/alpine" target="_blank">
             <iconify-icon width="2rem" icon="codicon:github"></iconify-icon>
           </a>
 
@@ -114,32 +82,6 @@
           </div>
           <div x-show="todos.length">
             <button @click="todos = []">Clear All</button>
-          </div>
-        </div>
-      </section>
-
-      <section class="flow">
-        <h2>Posts - Fetched via DummyJSON REST API</h2>
-
-        <div
-          class="grid"
-          x-data="{ posts: [], loading: true }"
-          x-init="
-            posts = fetch('https://jsonplaceholder.typicode.com/posts?_limit=6')
-              .then(res => res.json())
-              .catch(console.error)
-              .finally(() => loading = false)
-          "
-        >
-          <div x-show="loading" class="spinner"></div>
-
-          <div class="auto-grid">
-            <template x-for="post in posts">
-              <div class="grid card">
-                <h3 x-text="post.title"></h3>
-                <div x-text="post.body"></div>
-              </div>
-            </template>
           </div>
         </div>
       </section>
@@ -205,13 +147,10 @@
 
       <section class="flow" @keyup.escape="$store.isModalOpen = false">
         <h2>Modal</h2>
-        
+
         <button @click="$store.isModalOpen = true">Toggle Modal</button>
 
-        <div
-          class="modal"
-          x-cloak
-        >
+        <div class="modal" x-cloak>
           <div class="modal__backdrop" x-show="$store.isModalOpen === true">
             <div
               class="modal__content flow"
@@ -225,13 +164,39 @@
                   <iconify-icon width="2rem" icon="iconoir:xbox-x"></iconify-icon>
                 </button>
               </header>
-              <p>
+              <div>
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi delectus
                 quas illo alias, ab mollitia beatae eligendi accusantium labore veniam
                 ullam soluta nobis perferendis incidunt eius natus voluptas asperiores
                 quia quam aut!
-              </p>
+              </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="flow">
+        <h2>Posts - Fetched via DummyJSON REST API</h2>
+
+        <div
+          class="grid"
+          x-data="{ posts: [], loading: true }"
+          x-init="
+            posts = fetch('https://jsonplaceholder.typicode.com/posts?_limit=6')
+              .then(res => res.json())
+              .catch(console.error)
+              .finally(() => loading = false)
+          "
+        >
+          <div x-show="loading" class="spinner"></div>
+
+          <div class="auto-grid">
+            <template x-for="post in posts">
+              <div class="grid card">
+                <h3 x-text="post.title"></h3>
+                <div x-text="post.body"></div>
+              </div>
+            </template>
           </div>
         </div>
       </section>
