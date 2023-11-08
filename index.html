@@ -6,199 +6,51 @@
 
     <title>AlpineJS Demo</title>
 
-    <link rel="stylesheet" href="app.css" />
-
-    <script>
-      document.addEventListener('alpine:init', () => {
-        Alpine.store('isModalOpen', false)
-      })
-    </script>
+    <link rel="stylesheet" href="./app.css" />
 
     <script type="module">
       import 'https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js'
       import 'https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js'
       import 'https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js'
       import 'https://cdn.jsdelivr.net/npm/alpinejs@3.13.2/dist/cdn.min.js'
+      import 'https://cdn.jsdelivr.net/npm/axios@1.6.0/dist/axios.min.js'
+
+      document.addEventListener('alpine:init', () => {
+        Alpine.store('isModalOpen', false)
+      })
     </script>
-    
-    <script src="/tabs-data.js"></script>
+
+    <script src="./data/tabs.js"></script>
+    <script src="./utils.js"></script>
   </head>
 
   <body x-data="{darkMode: $persist(false)}" :class="darkMode && 'dark'" x-cloak>
     <main>
-      <header class="flex header">
-        <h1>AlpineJS Demo</h1>
-
-        <div class="flex">
-          <a href="https://github.com/bmehder/alpine" target="_blank">
-            <iconify-icon width="2rem" icon="codicon:github"></iconify-icon>
-          </a>
-
-          <label class="switch">
-            <input type="checkbox" @click="darkMode = !darkMode" :checked="darkMode" />
-            <span class="slider round"></span>
-          </label>
-
-          <template x-if="!darkMode">
-            <iconify-icon width="2rem" icon="ph:sun"></iconify-icon>
-          </template>
-
-          <template x-if="darkMode">
-            <iconify-icon width="2rem" icon="fluent-mdl2:clear-night"></iconify-icon>
-          </template>
-        </div>
-      </header>
+      <header x-html="getSlice('header.html')"></header>
 
       <section class="flow">
         <h2>Todo List</h2>
-        <div class="todos grid" x-data="{todos: $persist([]), value: ''}" x-cloak>
-          <form
-            @submit.prevent="
-              value.trim().length && todos.push({name: value, completed: false})
-              value = ''
-          "
-          >
-            <input type="text" x-model="value" placeholder="Add new item..." />
-            <button>+</button>
-          </form>
-          <template x-for="todo in todos">
-            <div class="list" x-id="['checkbox']">
-              <input :id="$id('checkbox')" type="checkbox" x-model="todo.completed" />
-              <label
-                :for="$id('checkbox')"
-                x-text="todo.name"
-                :class="todo.completed && 'completed'"
-              ></label>
-              <button @click="todos = todos.filter(x => x !== todo)">
-                <iconify-icon width="1.5rem" icon="iconoir:xbox-x"></iconify-icon>
-              </button>
-            </div>
-          </template>
-          <div x-show="todos.length">
-            <span x-text="todos.filter(x => x.completed).length"></span> /
-            <span x-text="todos.length"></span>
-            <span x-text="todos.length === 1 ? 'todo' : 'todos'"></span>
-            <span>completed</span>
-          </div>
-          <div x-show="todos.length">
-            <button @click="todos = []">Clear All</button>
-          </div>
-        </div>
+        <div x-html="getSlice('todos.html')" />
       </section>
 
-      <section class="flow" x-data="{...tabs, index: $persist(0)}">
+      <section class="flow">
         <h2>Tabs</h2>
-
-        <div class="tabs">
-          <template x-for="(tab, idx) in tabs">
-            <button
-              x-text="tab.name"
-              :class="index === idx && 'active'"
-              @click="index = idx"
-            ></button>
-          </template>
-
-          <div x-text="tabs[index].content"></div>
-        </div>
+        <div x-html="getSlice('tabs.html')" />
       </section>
 
       <section class="flow">
         <h2>Accordion</h2>
-
-        <div>
-          <div class="accordion" x-data="{ expanded: false }">
-            <button class="flex" @click="expanded = !expanded" :aria-expanded="expanded">
-              <h3>How many strawberries are served at Wimbledon each year?</h3>
-              <div x-text="expanded ? '−' : '+'"></div>
-            </button>
-            <div x-show="expanded" x-cloak x-collapse>
-              On average, about 170,000 strawberries are transported to Wimbledon each day
-              during the tournament. It was this kind of strawberry that was first
-              cultivated in Kent by Regan's great-grandfather, Bernard Champion, in 1893.
-            </div>
-          </div>
-
-          <div class="accordion" x-data="{ expanded: false }">
-            <button class="flex" @click="expanded = !expanded" :aria-expanded="expanded">
-              <h3>What was the longest tennis match in history?</h3>
-              <div x-text="expanded ? '−' : '+'"></div>
-            </button>
-            <div x-show="expanded" x-cloak x-collapse>
-              The longest tennis match lasted for 11 hours and 5 minutes and was contested
-              over three days between John Isner and Nicolas Mahut at 2010 Wimbledon.
-            </div>
-          </div>
-
-          <div class="accordion" x-data="{ expanded: false }">
-            <button class="flex" @click="expanded = !expanded" :aria-expanded="expanded">
-              <h3>Has anyone ever won a golden set in tennis?</h3>
-              <div x-text="expanded ? '−' : '+'"></div>
-            </button>
-            <div x-show="expanded" x-cloak x-collapse>
-              It has also happened a number of times in the pre-tournament qualifier of
-              the lowest-level events. Bill Scanlon had a golden second set in his win
-              over Marcos Hocevar at the 1983 Delray Beach WCT event. Yaroslava Shvedova
-              had a golden first set in her win over Sara Errani at the 2012 Wimbledon
-              Championships.
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="flow" @keyup.escape="$store.isModalOpen = false">
-        <h2>Modal</h2>
-
-        <button @click="$store.isModalOpen = true">Toggle Modal</button>
-
-        <div class="modal" x-cloak>
-          <div class="modal__backdrop" x-show="$store.isModalOpen === true">
-            <div
-              class="modal__content flow"
-              @click.outside="$store.isModalOpen = false"
-              x-show="$store.isModalOpen === true"
-              x-transition
-            >
-              <header class="flex">
-                <h2>Modal Content</h2>
-                <button @click="$store.isModalOpen = false">
-                  <iconify-icon width="2rem" icon="iconoir:xbox-x"></iconify-icon>
-                </button>
-              </header>
-              <div>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi delectus
-                quas illo alias, ab mollitia beatae eligendi accusantium labore veniam
-                ullam soluta nobis perferendis incidunt eius natus voluptas asperiores
-                quia quam aut!
-              </div>
-            </div>
-          </div>
-        </div>
+        <div x-html="getSlice('accordion.html')" />
       </section>
 
       <section class="flow">
-        <h2>Posts - Fetched via DummyJSON REST API</h2>
+        <h2>Modal</h2>
+        <div x-html="getSlice('modal.html')" />
+      </section>
 
-        <div
-          class="grid"
-          x-data="{ posts: [], loading: true }"
-          x-init="
-            posts = fetch('https://jsonplaceholder.typicode.com/posts?_limit=6')
-              .then(res => res.json())
-              .catch(console.error)
-              .finally(() => loading = false)
-          "
-        >
-          <div x-show="loading" class="spinner"></div>
-
-          <div class="auto-grid">
-            <template x-for="post in posts">
-              <div class="grid card">
-                <h3 x-text="post.title"></h3>
-                <div x-text="post.body"></div>
-              </div>
-            </template>
-          </div>
-        </div>
+      <section class="flow">
+        <h2>Posts</h2>
+        <div x-html="getSlice('posts.html')" />
       </section>
     </main>
   </body>

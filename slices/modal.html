@@ -1,0 +1,26 @@
+<div class="flow" @keyup.escape="$store.isModalOpen = false">
+  <button @click="$store.isModalOpen = true">Toggle Modal</button>
+
+  <div class="modal" x-cloak>
+    <div class="modal__backdrop" x-show="$store.isModalOpen === true">
+      <div
+        class="modal__content flow"
+        @click.outside="$store.isModalOpen = false"
+        x-show="$store.isModalOpen === true"
+        x-transition
+      >
+        <header class="flex">
+          <h2>Modal Content</h2>
+          <button @click="$store.isModalOpen = false">
+            <iconify-icon width="2rem" icon="iconoir:xbox-x"></iconify-icon>
+          </button>
+        </header>
+        <div>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi delectus quas
+          illo alias, ab mollitia beatae eligendi accusantium labore veniam ullam soluta
+          nobis perferendis incidunt eius natus voluptas asperiores quia quam aut!
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

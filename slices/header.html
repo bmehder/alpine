@@ -1,0 +1,19 @@
+<div class="flex">
+  <h1>AlpineJS Demo</h1>
+
+  <div class="flex">
+    <a href="https://github.com/bmehder/alpine" target="_blank">
+      <iconify-icon width="2rem" icon="codicon:github"></iconify-icon>
+    </a>
+    <label class="switch">
+      <input type="checkbox" @click="darkMode = !darkMode" :checked="darkMode" />
+      <span class="slider round"></span>
+    </label>
+    <template x-if="!darkMode">
+      <iconify-icon width="2rem" icon="ph:sun"></iconify-icon>
+    </template>
+    <template x-if="darkMode">
+      <iconify-icon width="2rem" icon="fluent-mdl2:clear-night"></iconify-icon>
+    </template>
+  </div>
+</div>

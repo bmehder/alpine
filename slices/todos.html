@@ -1,0 +1,35 @@
+<div class="todos grid" x-data="{todos: $persist([]), value: ''}" x-cloak>
+  <form
+    @submit.prevent="
+      value.trim().length && todos.push({name: value, completed: false})
+      value = ''
+    "
+  >
+    <input type="text" x-model="value" placeholder="Add new item..." />
+    <button>+</button>
+  </form>
+
+  <template x-for="todo in todos">
+    <div class="list" x-id="['checkbox']">
+      <input :id="$id('checkbox')" type="checkbox" x-model="todo.completed" />
+      <label
+        :for="$id('checkbox')"
+        x-text="todo.name"
+        :class="todo.completed && 'completed'"
+      ></label>
+      <button @click="todos = todos.filter(x => x !== todo)">
+        <iconify-icon width="1.5rem" icon="iconoir:xbox-x"></iconify-icon>
+      </button>
+    </div>
+  </template>
+  
+  <div x-show="todos.length">
+    <span x-text="todos.filter(x => x.completed).length"></span> /
+    <span x-text="todos.length"></span>
+    <span x-text="todos.length === 1 ? 'todo' : 'todos'"></span>
+    <span>completed</span>
+  </div>
+  <div x-show="todos.length">
+    <button @click="todos = []">Clear All</button>
+  </div>
+</div>
