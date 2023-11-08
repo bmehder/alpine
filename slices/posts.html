@@ -1,11 +1,11 @@
+
 <div
   class="grid"
   x-data="{ posts: [], loading: true }"
-  x-init="
-    posts = fetch('https://jsonplaceholder.typicode.com/posts?_limit=6')
-      .then(res => res.json())
-      .catch(console.error)
-      .finally(() => loading = false)
+  x-init=" posts = fetch('https://jsonplaceholder.typicode.com/posts?_limit=6')
+    .then(res => res.json())
+    .catch(console.error)
+    .finally(() => loading = false)
   "
 >
   <div x-show="loading" class="spinner"></div>
@@ -19,3 +19,5 @@
     </template>
   </div>
 </div>
+
+
