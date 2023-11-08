@@ -10,28 +10,4 @@
       Regan's great-grandfather, Bernard Champion, in 1893.
     </div>
   </div>
-
-  <div class="accordion" x-data="{ expanded: false }">
-    <button class="flex" @click="expanded = !expanded" :aria-expanded="expanded">
-      <h3>What was the longest tennis match in history?</h3>
-      <div x-text="expanded ? '−' : '+'"></div>
-    </button>
-    <div x-show="expanded" x-cloak x-collapse>
-      The longest tennis match lasted for 11 hours and 5 minutes and was contested over
-      three days between John Isner and Nicolas Mahut at 2010 Wimbledon.
-    </div>
-  </div>
-
-  <div class="accordion" x-data="{ expanded: false }">
-    <button class="flex" @click="expanded = !expanded" :aria-expanded="expanded">
-      <h3>Has anyone ever won a golden set in tennis?</h3>
-      <div x-text="expanded ? '−' : '+'"></div>
-    </button>
-    <div x-show="expanded" x-cloak x-collapse>
-      It has also happened a number of times in the pre-tournament qualifier of the
-      lowest-level events. Bill Scanlon had a golden second set in his win over Marcos
-      Hocevar at the 1983 Delray Beach WCT event. Yaroslava Shvedova had a golden first
-      set in her win over Sara Errani at the 2012 Wimbledon Championships.
-    </div>
-  </div>
 </div>
