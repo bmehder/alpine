@@ -1,4 +1,5 @@
 :root {
+  --max-width: 64rem;
   --light: #f1f1f1;
   --dark: #111;
   --accent: #bada55;
@@ -8,20 +9,19 @@
 * {
   box-sizing: border-box;
   margin: 0;
-  padding: 0
+  padding: 0;
 }
 
 /* Elements */
-main {
-  max-width: 48rem;
-  min-width: min(calc(100% - 1.5rem), 80%);
-  display: grid;
-  gap: 2rem;
-  margin-inline: auto;
-  padding: 4rem;
+body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   line-height: 1.5;
+}
+
+main {
+  display: grid;
+  gap: 2rem;
   accent-color: var(--accent);
 }
 
@@ -50,8 +50,17 @@ a {
   color: inherit;
 }
 
+.wrapper {
+  display: grid;
+  gap: 2rem;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding: 2rem;
+}
+
 header {
-  padding-block-end: 1rem;
+  max-width: var(--max-width);
+  padding-block-end: 2rem;
   border-bottom: 4px solid var(--accent);
 
   & a {
@@ -297,12 +306,11 @@ footer {
 }
 
 .phone {
-  
   & > * {
     display: block;
     padding: 0.5rem;
   }
-  
+
   & input {
     font-size: 1.5rem;
   }

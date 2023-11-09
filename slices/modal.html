@@ -1,17 +1,17 @@
-<div class="flow" @keyup.escape="$store.isModalOpen = false">
-  <button @click="$store.isModalOpen = true">Toggle Modal</button>
+<div x-data="modal()" class="flow" @keyup.escape="closeModal()">
+  <button @click="isModalOpen = true">Toggle Modal</button>
 
   <div class="modal" x-cloak>
-    <div class="modal__backdrop" x-show="$store.isModalOpen === true">
+    <div class="modal__backdrop" x-show="isModalOpen">
       <div
         class="modal__content flow"
-        @click.outside="$store.isModalOpen = false"
-        x-show="$store.isModalOpen === true"
+        @click.outside="closeModal()"
+        x-show="isModalOpen"
         x-transition
       >
         <header class="flex">
           <h2>Modal Content</h2>
-          <button @click="$store.isModalOpen = false">
+          <button @click="closeModal()">
             <iconify-icon width="2rem" icon="iconoir:xbox-x"></iconify-icon>
           </button>
         </header>

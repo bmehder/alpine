@@ -1,13 +1,10 @@
-<div>
-  <div class="accordion" x-data="{ expanded: false }">
-    <button class="flex" @click="expanded = !expanded" :aria-expanded="expanded">
-      <h3>How many strawberries are served at Wimbledon each year?</h3>
-      <div x-text="expanded ? '−' : '+'"></div>
+<template x-data="accordion()" x-for="(item, idx) in items">
+  <div class="accordion" :aria-expanded="isIndexesEq(idx)">
+    <button class="flex" @click="setIndex(idx)">
+      <h3 x-text="item.name" /></h3>
+      <div x-text="isIndexesEq(idx) ? '−' : '+'" />
     </button>
-    <div x-show="expanded" x-cloak x-collapse>
-      On average, about 170,000 strawberries are transported to Wimbledon each day during
-      the tournament. It was this kind of strawberry that was first cultivated in Kent by
-      Regan's great-grandfather, Bernard Champion, in 1893.
-    </div>
+    <div x-show="index === idx" x-text="item.content" x-cloak x-collapse />
   </div>
-</div>
+</template>
+

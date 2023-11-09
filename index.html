@@ -7,6 +7,7 @@
     <title>AlpineJS Demo</title>
 
     <link rel="stylesheet" href="./app.css" />
+    <script src="./utils.js" async></script>
 
     <script type="module">
       import 'https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js'
@@ -15,51 +16,57 @@
       import 'https://cdn.jsdelivr.net/npm/@alpinejs/mask@3.x.x/dist/cdn.min.js'
       import 'https://cdn.jsdelivr.net/npm/alpinejs@3.13.2/dist/cdn.min.js'
       import 'https://cdn.jsdelivr.net/npm/axios@1.6.0/dist/axios.min.js'
-
-      const setStoreValues = () => Alpine.store('isModalOpen', false)
       
-      document.addEventListener('alpine:init', setStoreValues)
-    </script>
+      import { tabs, accordion, modal, posts } from './contexts.js'
 
-    <script src="./data/tabs.js"></script>
-    <script src="./utils.js"></script>
+      const setContext = x => () => ({...x})
+      
+      document.addEventListener('alpine:init', () => {
+        Alpine.data('tabs', setContext(tabs))
+        Alpine.data('accordion', setContext(accordion))
+        Alpine.data('modal', setContext(modal))
+        Alpine.data('posts', setContext(posts))
+      })
+    </script>
   </head>
 
-  <body x-data="{darkMode: $persist(false)}" :class="darkMode && 'dark'" x-cloak>
-    <main>
+  <body x-data="{ isDarkMode: $persist(false) }" :class="isDarkMode && 'dark'" x-cloak>
+    <div class="wrapper">
       <header x-html="getSlice('header.html')"></header>
-
-      <section class="flow">
-        <h2>Todo List</h2>
-        <div x-html="getSlice('todos.html')" />
-      </section>
-
-      <section class="flow">
-        <h2>Tabs</h2>
-        <div x-html="getSlice('tabs.html')" />
-      </section>
-
-      <section class="flow">
-        <h2>Accordion</h2>
-        <div x-html="getSlice('accordion.html')" />
-      </section>
-
-      <section class="flow">
-        <h2>Modal</h2>
-        <div x-html="getSlice('modal.html')" />
-      </section>
-
-      <section class="flow">
-        <h2>Masked Input</h2>
-        <div x-html="getSlice('phone.html')" />
-      </section>
-
-      <section class="flow">
-        <h2>Posts</h2>
-        <div x-html="getSlice('posts.html')" />
-      </section>
       
+      <main>
+        <section class="flow">
+          <h2>Todo List</h2>
+          <div x-html="getSlice('todos.html')" />
+        </section>
+
+        <section class="flow">
+          <h2>Tabs</h2>
+          <div x-html="getSlice('tabs.html')" />
+        </section>
+        
+        <section class="flow">
+          <h2>Accordion</h2>
+          <div x-html="getSlice('accordion.html')" />
+        </section>
+        
+        <section class="flow">
+          <h2>Modal</h2>
+          <div x-html="getSlice('modal.html')" />
+        </section>
+        
+        <section class="flow">
+          <h2>Masked Input</h2>
+          <div x-html="getSlice('phone.html')" />
+        </section>
+        
+        <section class="flow">
+          <h2>Posts</h2>
+          <div x-html="getSlice('posts.html')" />
+        </section>
+      </main>
+
       <footer x-html="getSlice('footer.html')"></footer>
-    </main>
+    </div>
   </body>
 </html>

@@ -22,14 +22,14 @@
       </button>
     </div>
   </template>
-  
+
   <div x-show="todos.length">
     <span x-text="todos.filter(x => x.completed).length"></span> /
     <span x-text="todos.length"></span>
     <span x-text="todos.length === 1 ? 'todo' : 'todos'"></span>
     <span>completed</span>
   </div>
-  
+
   <div x-show="todos.length">
     <button @click="todos = []">Clear All</button>
   </div>

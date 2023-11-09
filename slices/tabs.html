@@ -1,12 +1,13 @@
-<div class="flow" x-data="{...tabs, index: $persist(0)}">
+<div class="flow" x-data="tabs()">
   <div class="tabs">
-    <template x-for="(tab, idx) in tabs">
+    <template x-for="(tab, idx) in items">
       <button
-        x-text="tab.name"
         :class="index === idx && 'active'"
+        x-text="tab.name"
         @click="index = idx"
       ></button>
     </template>
-    <div x-text="tabs[index].content"></div>
+
+    <div x-text="items[index].content" />
   </div>
 </div>
