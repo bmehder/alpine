@@ -1,3 +1,28 @@
+<style>
+  .accordion {
+    max-width: 48em;
+
+    & button {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 2ch;
+      padding: 0;
+      background: none;
+      color: inherit;
+      border: none;
+      text-align: initial;
+
+      & div {
+        font-size: 2rem;
+      }
+
+      & h3 {
+        font-weight: 400;
+      }
+    }
+  }
+</style>
+
 <template x-data="accordion()" x-for="(item, idx) in items">
   <div class="accordion" :aria-expanded="isIndexesEq(idx)">
     <button class="flex" @click="setIndex(idx)">
@@ -7,4 +32,3 @@
     <div x-show="index === idx" x-text="item.content" x-cloak x-collapse />
   </div>
 </template>
-

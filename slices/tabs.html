@@ -1,3 +1,26 @@
+<style>
+  .tabs {
+    max-width: 32rem;
+    filter: drop-shadow(0 0 1px #939393);
+
+    & button {
+      padding: 1rem;
+      background-color: white;
+
+      &.active {
+        background-color: var(--accent);
+      }
+    }
+
+    & div {
+      padding-block: 1.5rem;
+      padding-inline: 2rem;
+      background-color: white;
+      color: var(--dark);
+    }
+  }
+</style>
+
 <div class="flow" x-data="tabs()">
   <div class="tabs">
     <template x-for="(tab, idx) in items">

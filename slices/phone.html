@@ -1,3 +1,16 @@
+<style>
+  .phone {
+    & > * {
+      display: block;
+      padding: 0.5rem;
+    }
+
+    & input {
+      font-size: 1.5rem;
+    }
+  }
+</style>
+
 <div class="phone">
   <label for="phone">Phone Number</label>
   <input type="tel" id="phone" x-mask="(999) 999-9999" />

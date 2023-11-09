@@ -1,3 +1,42 @@
+<style>
+  .todos {
+    max-width: 24rem;
+    padding: 2rem;
+    border: 1px solid lightgray;
+
+    & :is(button, [type='checkbox']) {
+      cursor: pointer;
+    }
+
+    & form {
+      display: grid;
+      grid-template-columns: 1fr 4ch;
+
+      & > * {
+        padding: 0.5rem;
+      }
+    }
+
+    & .list {
+      display: grid;
+      grid-template-columns: 4ch 1fr 4ch;
+
+      & > * {
+        padding: 0.5rem;
+      }
+
+      & button {
+        background-color: transparent;
+        color: inherit;
+      }
+    }
+
+    & .completed {
+      text-decoration: line-through;
+    }
+  }
+</style>
+
 <div class="todos grid" x-data="{todos: $persist([]), value: ''}" x-cloak>
   <form
     @submit.prevent="
