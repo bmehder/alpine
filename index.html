@@ -89,7 +89,7 @@
         "
         ;
       >
-        <h1 style="text-shadow: 0 0 2px rgb(0, 0, 0);">
+        <h1 style="text-shadow: 0 0 2px black; color: white;">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut beatae atque totam
           recusandae facere a? Tenetur odit sunt facere corrupti minima veritatis sapiente
           sequi obcaecati numquam ut, harum a impedit.
@@ -105,7 +105,7 @@
         "
         ;
       >
-        <h1 style="text-shadow: 0 0 2px rgb(0, 0, 0);">
+        <h1 style="text-shadow: 0 0 2px black; color: white;">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut beatae atque totam
           recusandae facere a? Tenetur odit sunt facere corrupti minima veritatis sapiente
           sequi obcaecati numquam ut, harum a impedit.
@@ -121,42 +121,39 @@
         "
         ;
       >
-        <h1 style="text-shadow: 0 0 2px rgb(0, 0, 0);">
+        <h1 style="text-shadow: 0 0 2px black; color: white;">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut beatae atque totam
           recusandae facere a? Tenetur odit sunt facere corrupti minima veritatis sapiente
           sequi obcaecati numquam ut, harum a impedit.
         </h1>
       </section>
 
-      <section class="flow">
-        <h2>Todo List</h2>
-        <div x-html="getSlice('todos.html')" />
-      </section>
-
-      <section class="flow">
-        <h2>Tabs</h2>
-        <div x-html="getSlice('tabs.html')" />
-      </section>
-
-      <section class="flow">
-        <h2>Accordion</h2>
-        <div x-html="getSlice('accordion.html')" />
-      </section>
-
-      <section class="flow">
-        <h2>Modal</h2>
-        <div x-html="getSlice('modal.html')" />
-      </section>
-
-      <section class="flow">
-        <h2>Masked Input</h2>
-        <div x-html="getSlice('phone.html')" />
-      </section>
-
-      <section class="flow">
-        <h2>Posts</h2>
-        <div x-html="getSlice('posts.html')" />
-      </section>
+      <div class="flow" style="--flow-size: 1.5rem;">
+        <section class="flow">
+          <h2>Todo List</h2>
+          <div x-html="getSlice('todos.html')" />
+        </section>
+        <section class="flow">
+          <h2>Tabs</h2>
+          <div x-html="getSlice('tabs.html')" />
+        </section>
+        <section class="flow">
+          <h2>Accordion</h2>
+          <div x-html="getSlice('accordion.html')" />
+        </section>
+        <section class="flow">
+          <h2>Modal</h2>
+          <div x-html="getSlice('modal.html')" />
+        </section>
+        <section class="flow">
+          <h2>Masked Input</h2>
+          <div x-html="getSlice('phone.html')" />
+        </section>
+        <section class="flow">
+          <h2>Posts</h2>
+          <div x-html="getSlice('posts.html')" />
+        </section>
+      </div>
     </main>
 
     <footer x-html="getSlice('footer.html')"></footer>
