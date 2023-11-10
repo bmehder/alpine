@@ -58,10 +58,6 @@ header {
   }
 }
 
-section {
-  padding: 2rem;
-}
-
 footer {
   text-align: center;
 }
@@ -103,6 +99,7 @@ footer {
 
   display: grid;
   grid-template-columns: inherit;
+  padding-block: 2rem;
 }
 
 .grid {
