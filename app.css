@@ -18,8 +18,6 @@ body {
 }
 
 main {
-  /* display: grid; */
-  /* gap: 2rem; */
   padding-block: 4rem;
   accent-color: var(--accent);
 }
@@ -58,11 +56,6 @@ header {
   }
 }
 
-/* TEMP */
-section {
-  margin-block-start: 2rem;
-}
-
 footer {
   text-align: center;
 }
@@ -74,9 +67,9 @@ footer {
 
 /* Utilitities */
 .content-grid {
-  --padding-inline: 1rem;
-  --content-max-width: 900px;
-  --breakout-max-width: 1200px;
+  --padding-inline: 2rem;
+  --content-max-width: 64em;
+  --breakout-max-width: 74em;
 
   --breakout-size: calc((var(--breakout-max-width) - var(--content-max-width)) / 2);
 
@@ -128,7 +121,7 @@ footer {
 }
 
 .flow > * + * {
-  margin-block-start: 1.5rem;
+  margin-block-start: var(--flow-size, 1.5rem);
 }
 
 .dark {
@@ -144,11 +137,6 @@ footer {
 .active {
   background-color: var(--accent);
 }
-
-/* img.full-width {
-  width: 100%;
-  object-fit: cover;
-} */
 
 /* .Spinner */
 .spinner {
