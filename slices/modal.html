@@ -17,15 +17,14 @@
       color: white;
       border: 4px solid var(--light);
 
-      & .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+      & header {
+        display: grid;
+        grid-template-columns: 1fr 4ch;
+        padding-block: 1rem;
       }
 
       & button {
-        display: grid;
-        place-items: center;
+        padding: unset;
         background: none;
         color: white;
       }

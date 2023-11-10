@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+:root {
+  --light: #f1f1f1;
+  --dark: #111;
+  --accent: #bada55;
+}
+
+/* Resets */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+main {
+  /* padding-block-start: 4rem; */
+  /* padding-block-end: 4rem; */
+  accent-color: var(--accent);
+  line-height: 1.7;
+
+  /* TEMP */
+  & .h1 {
+    padding: 3rem;
+    color: white;
+    font-size: 3rem;
+    font-weight: 500;
+    text-align: center;
+    text-shadow: 0 0 1rem #00000099;
+  }
+
+  & > * + * {
+    margin-block-start: 3rem;
+  }
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3 {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.4;
+}
+
+img {
+  width: 100%;
+  display: block;
+  font-style: italic;
+  object-fit: cover;
+  object-position: center;
+}
+
+button {
+  display: inline-block;
+  margin-inline: auto;
+  padding-block: 0.75rem;
+  padding-inline: 2.5rem;
+  background-color: var(--accent);
+  font-family: 'Poppins', sans-serif;
+  font-size: inherit;
+  border: none;
+  transition: background-color 100ms;
+
+  &:hover {
+    cursor: pointer;
+    background-color: hsl(74, 64%, 49%);
+  }
+}
+
+a {
+  color: inherit;
+}
+
+header {
+  padding-block: 2rem;
+  border-bottom: 0.25rem solid var(--accent);
+
+  & a {
+    line-height: 0;
+  }
+}
+
+footer {
+  padding-block: 2rem;
+  text-align: center;
+}
+
+/* Attributes */
+[x-cloak] {
+  display: none !important;
+}
+
+/* Layouts */
+/* prettier-ignore */
+.content-grid {
+  /* Settings */
+  --padding-inline: 2em;
+  --content-max-width: 64em;
+  --breakout-max-width: 74em;
+
+  display: grid;
+
+  /* Derived Values: MC Hammer - U Can't touch this! */
+  --full-width: minmax(var(--padding-inline), 1fr);
+  --breakout-size: minmax(0, calc((var(--breakout-max-width) - var(--content-max-width)) / 2));
+  --content-size: min(100% - (var(--padding-inline) * 2), var(--content-max-width));
+
+  grid-template-columns:
+    [full-width-start]
+      var(--full-width)
+      [breakout-start]
+        var(--breakout-size)
+        [content-start]
+          var(--content-size)
+        [content-end]
+        var(--breakout-size) 
+      [breakout-end]
+      var(--full-width)
+    [full-width-end];
+    
+  & > :not(.breakout, .full-width),
+  .full-width > :not(.breakout, .full-width) {
+    grid-column: content;
+  }
+  
+  & > .breakout {
+    grid-column: breakout;
+    padding: 2rem;
+  }
+  
+  & > .full-width {
+    grid-column: full-width;
+    
+    display: grid;
+    grid-template-columns: inherit;
+    padding-block: 2rem;
+  }
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.auto-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--min, 16em), 1fr));
+  gap: var(--gap, 3rem);
+  align-items: start;
+}
+
+.columns {
+  --gap: 3rem;
+  display: grid;
+  gap: var(--gap);
+
+  
+  @media (min-width: 49em) {
+    grid-auto-flow: column;
+    gap: 3rem;
+  }
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--gap, 1rem);
+  flex-wrap: wrap;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flow > * + * {
+  margin-block-start: var(--flow-size, 1.5rem);
+}
+
+.half-flow > * + * {
+  margin-block-start: calc(var(--flow-size, 1.5rem) / 2);
+}
+
+.ui-components > * {
+  margin-block-start: 3rem;
+}
+
+/* .Spinner */
+.spinner {
+  width: 2rem;
+  height: 2rem;
+  margin: auto;
+  border: 0.5rem solid var(--light);
+  border-top: 0.5rem solid var(--accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    rotate: 360deg;
+  }
+}

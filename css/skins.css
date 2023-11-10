@@ -1,0 +1,68 @@
+.light {
+  background-color: var(--light);
+  color: var(--dark);
+}
+
+.dark {
+  background-color: var(--dark);
+  color: var(--light);
+
+  & h3,
+  .h3 {
+    color: var(--accent);
+  }
+}
+
+.card {
+  padding: 1.5rem;
+  border: 1px solid lightgray;
+}
+
+.active {
+  background-color: var(--accent);
+}
+
+.accent {
+  background-color: var(--accent);
+  color: var(--dark);
+
+  & h3,
+  .h3 {
+    color: var(--dark);
+  }
+}
+
+.gray {
+  background-color: #f1f1f1;
+  color: var(--dark);
+}
+
+.hero.hero {
+  background-image: url(https://picsum.photos/id/113/1920);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  font-size: 300%;
+  padding-block: 10rem;
+
+  & h2,
+  h3 {
+    color: white;
+    text-shadow: 0 0 1rem #00000099;
+  }
+  & h3 {
+    color: var(--accent);
+  }
+}
+
+.shadow {
+  box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.italic {
+  font-style: italic;
+}
+
+.lg-padding {
+  padding-block: 3rem;
+}

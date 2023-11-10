@@ -37,7 +37,7 @@
   }
 </style>
 
-<div class="todos grid" x-data="{todos: $persist([]), value: ''}" x-cloak>
+<div class="todos grid dark" x-data="{todos: $persist([]), value: ''}" x-cloak>
   <form
     @submit.prevent="
       value.trim().length && todos.push({name: value, completed: false})

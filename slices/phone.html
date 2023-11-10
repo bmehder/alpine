@@ -2,16 +2,19 @@
   .phone {
     & > * {
       display: block;
-      padding: 0.5rem;
     }
-
+    
+    & label {
+      font-weight: 500;
+    }
+    
     & input {
+      padding: 0.5rem;
       font-size: 1.5rem;
     }
   }
 </style>
 
-<div class="phone">
-  <label for="phone">Phone Number</label>
-  <input type="tel" id="phone" x-mask="(999) 999-9999" />
+<div class="phone half-flow">
+  <input type="tel" id="phone" placeholder="Enter phone #" x-mask="(999) 999-9999" />
 </div>
