@@ -18,8 +18,8 @@ body {
 }
 
 main {
-  display: grid;
-  gap: 2rem;
+  /* display: grid; */
+  /* gap: 2rem; */
   padding-block: 4rem;
   accent-color: var(--accent);
 }
@@ -58,6 +58,11 @@ header {
   }
 }
 
+/* TEMP */
+section {
+  margin-block-start: 2rem;
+}
+
 footer {
   text-align: center;
 }
@@ -69,7 +74,7 @@ footer {
 
 /* Utilitities */
 .content-grid {
-  --padding-inline: 1.5rem;
+  --padding-inline: 1rem;
   --content-max-width: 900px;
   --breakout-max-width: 1200px;
 
@@ -140,10 +145,10 @@ footer {
   background-color: var(--accent);
 }
 
-img.full-width {
+/* img.full-width {
   width: 100%;
   object-fit: cover;
-}
+} */
 
 /* .Spinner */
 .spinner {
