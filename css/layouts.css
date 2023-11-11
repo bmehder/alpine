@@ -1,0 +1,89 @@
+/* prettier-ignore */
+.content-grid {
+  --padding-inline: 2em;
+  --content-max-width: 64em;
+  --breakout-max-width: 74em;
+
+  display: grid;
+
+  /* Derived Values: MC Hammer - U Can't touch this! */
+  --full-width: minmax(var(--padding-inline), 1fr);
+  --breakout-size: minmax(0, calc((var(--breakout-max-width) - var(--content-max-width)) / 2));
+  --content-size: min(100% - (var(--padding-inline) * 2), var(--content-max-width));
+
+  grid-template-columns:
+    [full-width-start]
+      var(--full-width)
+      [breakout-start]
+        var(--breakout-size)
+        [content-start]
+          var(--content-size)
+        [content-end]
+        var(--breakout-size) 
+      [breakout-end]
+      var(--full-width)
+    [full-width-end];
+    
+  & > :not(.breakout, .full-width),
+  .full-width > :not(.breakout, .full-width) {
+    grid-column: content;
+  }
+  
+  & > .breakout {
+    grid-column: breakout;
+    padding: 2rem;
+  }
+  
+  & > .full-width {
+    grid-column: full-width;
+    
+    display: grid;
+    grid-template-columns: inherit;
+    padding-block: 2rem;
+  }
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.auto-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--min, 16em), 1fr));
+  gap: var(--gap, 3rem);
+  align-items: start;
+}
+
+.columns {
+  --gap: 3rem;
+  display: grid;
+  gap: var(--gap);
+
+  @media (min-width: 48em) {
+    grid-auto-flow: column;
+  }
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--gap, 1rem);
+  flex-wrap: wrap;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flow > * + * {
+  margin-block-start: var(--flow-size, 1.5rem);
+}
+
+.half-flow > * + * {
+  margin-block-start: calc(var(--flow-size, 1.5rem) / 2);
+}

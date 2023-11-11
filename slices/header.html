@@ -1,17 +1,29 @@
+<style>
+  header {
+    padding-block: 2rem;
+    border-bottom: 0.25rem solid var(--accent);
+
+    & a {
+      color: inherit;
+      line-height: 0;
+    }
+  }
+</style>
+
 <div class="flex">
   <h1>AlpineJS Demo</h1>
 
-  <div class="flex">
+  <div class="flex align-center">
     <a href="https://github.com/bmehder/alpine" target="_blank">
       <iconify-icon width="2rem" icon="codicon:github"></iconify-icon>
     </a>
 
     <div x-html="getSlice('switch.html')"></div>
-    
+
     <template x-if="!isDarkMode">
       <iconify-icon width="2rem" icon="ph:sun"></iconify-icon>
     </template>
-    
+
     <template x-if="isDarkMode">
       <iconify-icon width="2rem" icon="fluent-mdl2:clear-night"></iconify-icon>
     </template>
