@@ -20,7 +20,7 @@
       }
     </style>
    
-   <script src="./utils.js"></script>
+    <script src="./utils.js"></script>
 
     <script type="module">
       import 'https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js'
@@ -44,6 +44,7 @@
   </head>
 
   <body x-data="{ isDarkMode: $persist(false) }" :class="isDarkMode && 'dark'" x-cloak>
+    
     <header class="content-grid" x-html="getSlice('header.html')"></header>
 
     <main class="content-grid">
@@ -116,7 +117,7 @@
         </button>
       </section>
 
-      <section class="flow lg-padding">
+      <section class="flow">
         <h2>Heading Two</h2>
         <p>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima, alias! Quae
@@ -183,5 +184,6 @@
     </main>
 
     <footer class="accent" x-html="getSlice('footer.html')"></footer>
+    
   </body>
 </html>

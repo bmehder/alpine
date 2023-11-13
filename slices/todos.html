@@ -21,11 +21,16 @@
       display: grid;
       grid-template-columns: 4ch 1fr 4ch;
 
+      &:hover button {
+        opacity: 1;
+      }
+
       & > * {
         padding: 0.5rem;
       }
 
       & button {
+        opacity: 0;
         background-color: transparent;
         color: inherit;
       }

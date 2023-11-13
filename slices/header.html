@@ -10,22 +10,30 @@
   }
 </style>
 
-<div class="flex">
+<nav class="flex">
   <h1>AlpineJS Demo</h1>
 
-  <div class="flex align-center">
-    <a href="https://github.com/bmehder/alpine" target="_blank">
-      <iconify-icon width="2rem" icon="codicon:github"></iconify-icon>
-    </a>
+  <ul class="flex align-center">
+    <li>
+      <a href="https://github.com/bmehder/alpine" target="_blank">
+        <iconify-icon width="2rem" icon="codicon:github"></iconify-icon>
+      </a>
+    </li>
 
-    <div x-html="getSlice('switch.html')"></div>
+    <li>
+      <div x-html="getSlice('switch.html')"></div>
+    </li>
 
     <template x-if="!isDarkMode">
-      <iconify-icon width="2rem" icon="ph:sun"></iconify-icon>
+      <li>
+        <iconify-icon width="2rem" icon="ph:sun"></iconify-icon>
+      </li>
     </template>
 
     <template x-if="isDarkMode">
-      <iconify-icon width="2rem" icon="fluent-mdl2:clear-night"></iconify-icon>
+      <li>
+        <iconify-icon width="2rem" icon="fluent-mdl2:clear-night"></iconify-icon>
+      </li>
     </template>
-  </div>
-</div>
+  </ul>
+</nav>

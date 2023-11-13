@@ -4,7 +4,7 @@
   --light: #f1f1f1;
   --dark: #111;
   --accent: #bada55;
-  --accent-dark: #bada55;
+  --accent-dark: hsl(74, 64%, 49%);
 }
 
 * {
@@ -73,6 +73,10 @@ button {
     cursor: pointer;
     background-color: var(--accent-dark);
   }
+}
+
+ul {
+  list-style: none;
 }
 
 [x-cloak] {
