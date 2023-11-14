@@ -1,7 +1,5 @@
 <style>
-  .accordion {
-    margin-block-end: 1rem;
-    
+  .accordion {    
     & button {
       width: 100%;
       display: grid;
@@ -26,10 +24,10 @@
 
 <template x-data="accordion()" x-for="(item, idx) in items">
   <div class="accordion" :aria-expanded="isIndexesEq(idx)">
-    <button class="flex" @click="setIndex(idx)">
+    <button class="flex" style="align-items: center;" @click="setIndex(idx)">
       <h3 x-text="item.name" /></h3>
       <div x-text="isIndexesEq(idx) ? '−' : '+'" />
     </button>
-    <div x-show="index === idx" x-text="item.content" x-cloak x-collapse />
+    <div x-show="isIndexesEq(idx)" x-text="item.content" x-cloak x-collapse />
   </div>
 </template>

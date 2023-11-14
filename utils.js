@@ -1,3 +1,6 @@
-const getSlice = async x => (await axios.get(`./slices/${x}`)).data
+const getSlice = x =>
+  fetch(`./slices/${x}`)
+    .then(res => res.text())
+    .catch(console.error)
 
 const getCurrentYear = () => new Date().getFullYear()
