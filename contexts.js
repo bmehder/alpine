@@ -3,9 +3,9 @@ import { carouselItems, tabsItems, accordionItems, postsURL } from './data.js'
 export const carousel = {
   index: 0,
   items: carouselItems,
-  timer: null,
+  intervalId: null,
   isPlaying: true,
-  delay: 4,
+  delay: 10,
 
   setIndex(idx) {
     if (idx < 0) {
@@ -22,7 +22,7 @@ export const carousel = {
   },
 
   autoplay() {
-    this.timer = setInterval(() => this.setIndex(this.index + 1), this.delay * 1000)
+    this.intervalId = setInterval(() => this.setIndex(this.index + 1), this.delay * 1000)
   },
   
   togglePlay() {
@@ -31,12 +31,15 @@ export const carousel = {
       this.isPlaying = false
     } else {
       this.isPlaying = true
-      this.timer = setInterval(() => this.setIndex(this.index + 1), this.delay * 1000)
+      this.intervalId = setInterval(
+        () => this.setIndex(this.index + 1),
+        this.delay * 1000
+      )
     }
   },
 
   destroy() {
-    clearInterval(this.timer)
+    clearInterval(this.intervalId)
   },
 }
 
