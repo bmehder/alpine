@@ -29,11 +29,12 @@
       import 'https://cdn.jsdelivr.net/npm/@alpinejs/mask@3.x.x/dist/cdn.min.js'
       import 'https://cdn.jsdelivr.net/npm/alpinejs@3.13.2/dist/cdn.min.js'
 
-      import { tabs, accordion, modal, posts } from './contexts.js'
+      import { carousel, tabs, accordion, modal, posts } from './contexts.js'
 
       const setContext = x => () => ({ ...x })
 
       document.addEventListener('alpine:init', () => {
+        Alpine.data('carousel', setContext(carousel))
         Alpine.data('tabs', setContext(tabs))
         Alpine.data('accordion', setContext(accordion))
         Alpine.data('modal', setContext(modal))
@@ -46,11 +47,16 @@
     
     <header class="content-grid" x-html="getSlice('header.html')"></header>
 
+    <section aria-label="Hero Images" x-html="getSlice('carousel.html')"></section>
+
     <main class="content-grid">
-      <section class="flow full-width hero">
+
+      <!-- <section class="flow full-width hero">
         <h2>Lorem ipsum dolor sit amet.</h2>
         <h3>Made in NYC.</div>
-      </section>
+      </section> -->
+
+      <!-- <section class="breakout" x-html="getSlice('banana.html')"></section> -->
 
       <section class="flow">
         <h2>Heading Two</h2>
@@ -75,7 +81,7 @@
       </section>
 
       <section class="breakout accent shadow italic">
-        <h3>
+        <h3 style="font-weight: 500;">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima, alias! Quae
           officiis culpa, eos sit ducimus exercitationem ratione nam laboriosam quaerat
           temporibus voluptas reiciendis saepe voluptate reprehenderit hic esse, provident

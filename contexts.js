@@ -1,4 +1,44 @@
-import { tabsItems, accordionItems, postsURL } from './data.js'
+import { carouselItems, tabsItems, accordionItems, postsURL } from './data.js'
+
+export const carousel = {
+  index: 0,
+  items: carouselItems,
+  timer: null,
+  isPlaying: true,
+  delay: 4,
+
+  setIndex(idx) {
+    if (idx < 0) {
+      this.index = carouselItems.length - 1
+      return
+    }
+
+    if (idx > carouselItems.length - 1) {
+      this.index = 0
+      return
+    }
+
+    this.index = idx
+  },
+
+  autoplay() {
+    this.timer = setInterval(() => this.setIndex(this.index + 1), this.delay * 1000)
+  },
+  
+  togglePlay() {
+    if (this.isPlaying) {
+      clearInterval(this.timer)
+      this.isPlaying = false
+    } else {
+      this.isPlaying = true
+      this.timer = setInterval(() => this.setIndex(this.index + 1), this.delay * 1000)
+    }
+  },
+
+  destroy() {
+    clearInterval(this.timer)
+  },
+}
 
 export const tabs = {
   index: 0,

@@ -1,3 +1,20 @@
+export const carouselItems = [
+  {
+    src: 'https://source.unsplash.com/ndN00KmbJ1c',
+    alt: 'Hiker looking standing on mountain peak overlooking mountain range',
+  },
+  {
+    src: 'https://source.unsplash.com/eOpewngf68w',
+    alt: 'Looking across bridge in a forest',
+    text: 'Here is some text!',
+  },
+  {
+    src: 'https://source.unsplash.com/78A265wPiO4',
+    alt: 'Trees and side of a mountain',
+    text: 'Here is some more text!',
+  },
+]
+
 export const tabsItems = [
   {
     name: 'Tab 1',
