@@ -27,14 +27,11 @@ export const carousel = {
   
   togglePlay() {
     if (this.isPlaying) {
-      clearInterval(this.intervalId)
       this.isPlaying = false
+      clearInterval(this.intervalId)
     } else {
       this.isPlaying = true
-      this.intervalId = setInterval(
-        () => this.setIndex(this.index + 1),
-        this.delay * 1000
-      )
+      this.autoplay()
     }
   },
 
