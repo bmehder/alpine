@@ -5,15 +5,15 @@ export const carousel = {
   items: carouselItems,
   intervalId: null,
   isPlaying: true,
-  delay: 10,
+  delay: 4,
 
   setIndex(idx) {
     if (idx < 0) {
-      this.index = carouselItems.length - 1
+      this.index = this.items.length - 1
       return
     }
 
-    if (idx > carouselItems.length - 1) {
+    if (idx > this.items.length - 1) {
       this.index = 0
       return
     }
@@ -27,7 +27,7 @@ export const carousel = {
   
   togglePlay() {
     if (this.isPlaying) {
-      clearInterval(this.timer)
+      clearInterval(this.intervalId)
       this.isPlaying = false
     } else {
       this.isPlaying = true

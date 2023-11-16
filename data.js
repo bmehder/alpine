@@ -11,7 +11,7 @@ export const carouselItems = [
   {
     src: 'https://source.unsplash.com/78A265wPiO4',
     alt: 'Trees and side of a mountain',
-    text: 'Here is some more text!',
+    text: 'Here is some more text that is longer!',
   },
 ]
 
