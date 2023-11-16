@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="./css/app.css" />
     <link rel="stylesheet" href="./css/layouts.css" />
     <link rel="stylesheet" href="./css/skins.css" />
-   
-   <style>
+
+    <style>
       .ui-components {
         padding-block-end: 6rem;
 
@@ -19,7 +19,7 @@
         }
       }
     </style>
-   
+
     <script src="./utils.js"></script>
 
     <script type="module">
@@ -29,7 +29,7 @@
       import 'https://cdn.jsdelivr.net/npm/@alpinejs/mask@3.x.x/dist/cdn.min.js'
       import 'https://cdn.jsdelivr.net/npm/alpinejs@3.13.2/dist/cdn.min.js'
 
-      import { carousel, tabs, accordion, modal, posts } from './contexts.js'
+      import { carousel, tabs, accordion, modal, posts, backToTop } from './contexts.js'
 
       const setContext = x => () => ({ ...x })
 
@@ -39,24 +39,44 @@
         Alpine.data('accordion', setContext(accordion))
         Alpine.data('modal', setContext(modal))
         Alpine.data('posts', setContext(posts))
+        Alpine.data('backToTop', setContext(backToTop))
       })
     </script>
   </head>
 
   <body x-data="{ isDarkMode: $persist(false) }" :class="isDarkMode && 'dark'" x-cloak>
-    
     <header class="content-grid" x-html="getSlice('header.html')"></header>
 
     <section aria-label="Hero Images" x-html="getSlice('carousel.html')"></section>
 
     <main class="content-grid">
-
       <!-- <section class="flow full-width hero">
         <h2>Lorem ipsum dolor sit amet.</h2>
         <h3>Made in NYC.</div>
       </section> -->
 
-      <!-- <section class="breakout" x-html="getSlice('banana.html')"></section> -->
+      <section class="breakout" x-html="getSlice('banana.html')"></section>
+
+      <section
+        class="flow full-width"
+        style="
+          padding-block: 6rem;
+          background-image: url('https://picsum.photos/id/17/2000');
+          background-size: cover;
+          background-position: center;
+        "
+      >
+        <div class="h1" style="font-size: 6vw">
+          Lorem ipsum dolor sit amet consectetur.
+        </div>
+
+        <button
+          class="shadow"
+          style="margin-inline: auto; font-size: 1.5rem; border: 4px solid white"
+        >
+          Let's Go!
+        </button>
+      </section>
 
       <section class="flow">
         <h2>Heading Two</h2>
@@ -81,7 +101,7 @@
       </section>
 
       <section class="breakout accent shadow italic">
-        <h3 style="font-weight: 500;">
+        <h3 style="font-weight: 500">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima, alias! Quae
           officiis culpa, eos sit ducimus exercitationem ratione nam laboriosam quaerat
           temporibus voluptas reiciendis saepe voluptate reprehenderit hic esse, provident
@@ -119,11 +139,7 @@
 
         <button
           class="shadow"
-          style="
-            margin-inline: auto;
-            font-size: 1.5rem;
-            border: 4px solid white
-          "
+          style="margin-inline: auto; font-size: 1.5rem; border: 4px solid white"
         >
           Let's Go!
         </button>
@@ -159,24 +175,24 @@
       </section>
 
       <div class="full-width flow ui-components gray">
-        <div class="flex" style="justify-content: unset;">
+        <div class="flex" style="justify-content: unset">
           <section class="flow flex-1">
             <h2>Todo List</h2>
             <div x-html="getSlice('todos.html')" />
           </section>
-          
+
           <section class="flow flex-1">
             <h2>Tabs</h2>
             <div x-html="getSlice('tabs.html')" />
           </section>
         </div>
-        
-        <div class="flex" style="justify-content: unset;">
+
+        <div class="flex" style="justify-content: unset">
           <section class="flow flex-1">
             <h2>Masked Input</h2>
             <div x-html="getSlice('phone.html')" />
           </section>
-          
+
           <section class="flow flex-1">
             <h2>Modal</h2>
             <div x-html="getSlice('modal.html')" />
@@ -195,7 +211,6 @@
       </div>
     </main>
 
-    <footer class="accent" x-html="getSlice('footer.html')"></footer>
-    
+    <footer class="content-grid accent" x-html="getSlice('footer.html')"></footer>
   </body>
 </html>

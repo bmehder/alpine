@@ -10,15 +10,6 @@
       object-position: center;
     }
 
-    & :is(.prev, .next) {
-      display: grid;
-      place-content: center;
-      position: absolute;
-      top: 50%;
-      translate: 0 -50%;
-      z-index: 2;
-    }
-
     & li {
       position: absolute;
       inset: 0;
@@ -33,6 +24,15 @@
       z-index: 1;
       color: transparent;
       background-color: transparent;
+    }
+
+    & :is(.prev, .next) {
+      display: grid;
+      place-content: center;
+      position: absolute;
+      top: 50%;
+      translate: 0 -50%;
+      z-index: 2;
     }
 
     & .prev {
@@ -63,9 +63,7 @@
       place-content: center;
       text-align: center;
       font-size: 6vw;
-      line-height: 1.2;
       font-weight: 700;
-      text-shadow: 2px 2px 0.5rem rgba(0, 0, 0, 0.5);
     }
   }
 </style>

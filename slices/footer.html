@@ -1,11 +1,28 @@
 <style>
   footer {
+    align-items: center;
     padding-block: 2rem;
     text-align: center;
+
+    & p {
+     line-height: 2;
+    }
+
+    & button {
+      all: unset;
+      padding: 0.25rem;
+      border-radius: 50%;
+    }
   }
 </style>
 
-<p x-data>
-  Copyright &copy <span x-text="getCurrentYear()"></span> Tom Foolery. All shenanigans
-  reserved.
-</p>
+<div class="flex">
+  <p>
+    Copyright &copy <span x-text="getCurrentYear()"></span> Tom Foolery. All shenanigans
+    reserved.
+  </p>
+
+  <button x-data="backToTop()" @click="scrollToTop()">
+    <iconify-icon width="1.5rem" icon="fluent:chevron-up-24-filled"></iconify-icon>
+  </button>
+</div>

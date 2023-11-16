@@ -5,7 +5,7 @@ export const carousel = {
   items: carouselItems,
   intervalId: null,
   isPlaying: true,
-  delay: 4,
+  delay: 10,
 
   setIndex(idx) {
     if (idx < 0) {
@@ -84,4 +84,10 @@ export const posts = {
       .catch(console.error)
       .finally(() => this._toggleIsLoading())
   },
+}
+
+export const backToTop = {
+  scrollToTop() {
+    window.scrollTo(0,0)
+  }
 }
