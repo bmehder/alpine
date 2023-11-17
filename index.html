@@ -11,12 +11,8 @@
 		<link rel="stylesheet" href="./css/skins.css" />
 
 		<style>
-			.ui-components {
-				padding-block-end: 6rem;
-
-				& > * {
-					margin-block-start: 3rem;
-				}
+			.ui-components > * {
+					padding-block: 1.5rem;
 			}
 		</style>
 
@@ -47,7 +43,7 @@
 	<body x-data="{ isDarkMode: $persist(false) }" :class="isDarkMode && 'dark'" x-cloak>
 		<header class="content-grid" x-html="getSlice('header.html')"></header>
 
-		<section aria-label="Hero Images" x-html="getSlice('carousel.html')"></section>
+		<div aria-label="Hero Images" x-html="getSlice('carousel.html')"></div>
 
 		<main class="content-grid">
 			<!-- <section class="flow full-width hero">
@@ -98,7 +94,7 @@
 				</div>
 			</section>
 
-			<section class="breakout accent shadow italic">
+			<section class="breakout accent shadow italic" style="margin-block: 0;">
 				<h3 style="font-weight: 500">
 					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima, alias! Quae
 					officiis culpa, eos sit ducimus exercitationem ratione nam laboriosam quaerat
@@ -107,7 +103,7 @@
 				</h3>
 			</section>
 
-			<section>
+			<section style="margin-block: 0;">
 				<p>
 					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima, alias! Quae
 					officiis culpa, eos sit ducimus exercitationem ratione nam laboriosam quaerat
@@ -195,7 +191,7 @@
 					</section>
 				</div>
 
-				<section class="flow">
+				<section class="">
 					<h2>Accordion</h2>
 					<div class="flow" x-html="getSlice('accordion.html')" />
 				</section>

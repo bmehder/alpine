@@ -47,6 +47,7 @@ main {
 
   & > * + * {
     margin-block-start: 3rem;
+    padding-block: 3rem;
   }
 }
 
