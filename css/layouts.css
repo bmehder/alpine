@@ -1,12 +1,13 @@
 /* prettier-ignore */
 .content-grid {
-  --padding-inline: 2em;
+  --padding: 2rem;
   --content-max-width: 64em;
   --breakout-max-width: 72em;
-
+  
   display: grid;
-
+  
   /* Derived Values: MC Hammer - U Can't touch this! */
+  --padding-inline: var(--padding);
   --full-width: minmax(var(--padding-inline), 1fr);
   --breakout-size: minmax(0, calc((var(--breakout-max-width) - var(--content-max-width)) / 2));
   --content-size: min(100% - (var(--padding-inline) * 2), var(--content-max-width));
@@ -31,7 +32,7 @@
   
   & > .breakout {
     grid-column: breakout;
-    padding: 2rem;
+    padding: var(--padding);
   }
   
   & > .full-width {
@@ -39,7 +40,7 @@
     
     display: grid;
     grid-template-columns: inherit;
-    padding-block: 2rem;
+    padding-block: var(--padding);
   }
 }
 

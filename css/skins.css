@@ -33,7 +33,7 @@
 }
 
 .gray {
-  background-color: #f1f1f1;
+  background-color: var(--light);
   color: var(--dark);
 }
 

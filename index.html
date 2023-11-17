@@ -1,216 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>AlpineJS Demo</title>
+		<title>AlpineJS Demo</title>
 
-    <link rel="stylesheet" href="./css/app.css" />
-    <link rel="stylesheet" href="./css/layouts.css" />
-    <link rel="stylesheet" href="./css/skins.css" />
+		<link rel="stylesheet" href="./css/app.css" />
+		<link rel="stylesheet" href="./css/layouts.css" />
+		<link rel="stylesheet" href="./css/skins.css" />
 
-    <style>
-      .ui-components {
-        padding-block-end: 6rem;
+		<style>
+			.ui-components {
+				padding-block-end: 6rem;
 
-        & > * {
-          margin-block-start: 3rem;
-        }
-      }
-    </style>
+				& > * {
+					margin-block-start: 3rem;
+				}
+			}
+		</style>
 
-    <script src="./utils.js"></script>
+		<script src="./utils.js" async></script>
 
-    <script type="module">
-      import 'https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js'
-      import 'https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js'
-      import 'https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js'
-      import 'https://cdn.jsdelivr.net/npm/@alpinejs/mask@3.x.x/dist/cdn.min.js'
-      import 'https://cdn.jsdelivr.net/npm/alpinejs@3.13.2/dist/cdn.min.js'
+		<script type="module">
+			import 'https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js'
+			import 'https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js'
+			import 'https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js'
+			import 'https://cdn.jsdelivr.net/npm/@alpinejs/mask@3.x.x/dist/cdn.min.js'
+			import 'https://cdn.jsdelivr.net/npm/alpinejs@3.13.2/dist/cdn.min.js'
 
-      import { carousel, tabs, accordion, modal, posts, backToTop } from './contexts.js'
+			import { carousel, tabs, accordion, modal, posts, backToTop } from './contexts.js'
 
-      const setContext = x => () => ({ ...x })
+			const setContext = x => () => ({ ...x })
 
-      document.addEventListener('alpine:init', () => {
-        Alpine.data('carousel', setContext(carousel))
-        Alpine.data('tabs', setContext(tabs))
-        Alpine.data('accordion', setContext(accordion))
-        Alpine.data('modal', setContext(modal))
-        Alpine.data('posts', setContext(posts))
-        Alpine.data('backToTop', setContext(backToTop))
-      })
-    </script>
-  </head>
+			document.addEventListener('alpine:init', () => {
+				Alpine.data('carousel', setContext(carousel))
+				Alpine.data('tabs', setContext(tabs))
+				Alpine.data('accordion', setContext(accordion))
+				Alpine.data('modal', setContext(modal))
+				Alpine.data('posts', setContext(posts))
+				Alpine.data('backToTop', setContext(backToTop))
+			})
+		</script>
+	</head>
 
-  <body x-data="{ isDarkMode: $persist(false) }" :class="isDarkMode && 'dark'" x-cloak>
-    <header class="content-grid" x-html="getSlice('header.html')"></header>
+	<body x-data="{ isDarkMode: $persist(false) }" :class="isDarkMode && 'dark'" x-cloak>
+		<header class="content-grid" x-html="getSlice('header.html')"></header>
 
-    <section aria-label="Hero Images" x-html="getSlice('carousel.html')"></section>
+		<section aria-label="Hero Images" x-html="getSlice('carousel.html')"></section>
 
-    <main class="content-grid">
-      <!-- <section class="flow full-width hero">
+		<main class="content-grid">
+			<!-- <section class="flow full-width hero">
         <h2>Lorem ipsum dolor sit amet.</h2>
         <h3>Made in NYC.</div>
       </section> -->
 
-      <section class="breakout" x-html="getSlice('banana.html')"></section>
+			<section class="breakout" x-html="getSlice('banana.html')"></section>
 
-      <section
-        class="flow full-width"
-        style="
-          padding-block: 6rem;
-          background-image: url('https://picsum.photos/id/17/2000');
-          background-size: cover;
-          background-position: center;
-        "
-      >
-        <div class="h1" style="font-size: 6vw">
-          Lorem ipsum dolor sit amet consectetur.
-        </div>
+			<section
+				class="flow full-width"
+				style="
+					padding-block: 6rem;
+					background-image: url('https://picsum.photos/id/17/2000');
+					background-size: cover;
+					background-position: center;
+				">
+				<div class="h1" style="font-size: 6vw">
+					Lorem ipsum dolor sit amet consectetur.
+				</div>
 
-        <button
-          class="shadow"
-          style="margin-inline: auto; font-size: 1.5rem; border: 4px solid white"
-        >
-          Let's Go!
-        </button>
-      </section>
+				<button
+					class="shadow"
+					style="margin-inline: auto; font-size: 1.5rem; border: 4px solid white">
+					Let's Go!
+				</button>
+			</section>
 
-      <section class="flow">
-        <h2>Heading Two</h2>
-        <div class="columns" style="--gap: 1.5rem">
-          <div>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste consectetur
-            recusandae expedita nostrum ipsum repellendus, voluptates enim quia odit
-            officiis facilis quo doloribus repudiandae illum quasi ipsam minus obcaecati
-            veritatis suscipit. Perspiciatis corporis asperiores mollitia vitae labore
-            minus optio voluptas dolorem animi iste, et voluptatem debitis, molestias qui
-            in nihil.
-          </div>
-          <div>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste consectetur
-            recusandae expedita nostrum ipsum repellendus, voluptates enim quia odit
-            officiis facilis quo doloribus repudiandae illum quasi ipsam minus obcaecati
-            veritatis suscipit. Perspiciatis corporis asperiores mollitia vitae labore
-            minus optio voluptas dolorem animi iste, et voluptatem debitis, molestias qui
-            in nihil.
-          </div>
-        </div>
-      </section>
+			<section class="flow">
+				<h2>Heading Two</h2>
+				<div class="columns" style="--gap: 1.5rem">
+					<div>
+						Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste consectetur
+						recusandae expedita nostrum ipsum repellendus, voluptates enim quia odit
+						officiis facilis quo doloribus repudiandae illum quasi ipsam minus obcaecati
+						veritatis suscipit. Perspiciatis corporis asperiores mollitia vitae labore
+						minus optio voluptas dolorem animi iste, et voluptatem debitis, molestias qui
+						in nihil.
+					</div>
+					<div>
+						Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste consectetur
+						recusandae expedita nostrum ipsum repellendus, voluptates enim quia odit
+						officiis facilis quo doloribus repudiandae illum quasi ipsam minus obcaecati
+						veritatis suscipit. Perspiciatis corporis asperiores mollitia vitae labore
+						minus optio voluptas dolorem animi iste, et voluptatem debitis, molestias qui
+						in nihil.
+					</div>
+				</div>
+			</section>
 
-      <section class="breakout accent shadow italic">
-        <h3 style="font-weight: 500">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima, alias! Quae
-          officiis culpa, eos sit ducimus exercitationem ratione nam laboriosam quaerat
-          temporibus voluptas reiciendis saepe voluptate reprehenderit hic esse, provident
-          labore perspiciatis facilis magnam id.
-        </h3>
-      </section>
+			<section class="breakout accent shadow italic">
+				<h3 style="font-weight: 500">
+					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima, alias! Quae
+					officiis culpa, eos sit ducimus exercitationem ratione nam laboriosam quaerat
+					temporibus voluptas reiciendis saepe voluptate reprehenderit hic esse, provident
+					labore perspiciatis facilis magnam id.
+				</h3>
+			</section>
 
-      <section>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima, alias! Quae
-          officiis culpa, eos sit ducimus exercitationem ratione nam laboriosam quaerat
-          temporibus voluptas reiciendis saepe voluptate reprehenderit hic esse, provident
-          labore perspiciatis facilis magnam id. Incidunt ducimus ipsam deleniti unde ad.
-          Quisquam ipsa minus, quaerat deserunt veritatis culpa labore voluptas similique
-          quos tempore beatae. Repellat ducimus reprehenderit provident tempore nihil,
-          eaque quas inventore iure necessitatibus aperiam sapiente natus quae. Quam nulla
-          rerum assumenda. Ullam ea facilis modi non unde iure odio, nulla veniam dolorum,
-          est quia itaque assumenda earum provident eum ipsam sequi magnam nobis, eos
-          quam? Unde, ut facilis.
-        </p>
-      </section>
+			<section>
+				<p>
+					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima, alias! Quae
+					officiis culpa, eos sit ducimus exercitationem ratione nam laboriosam quaerat
+					temporibus voluptas reiciendis saepe voluptate reprehenderit hic esse, provident
+					labore perspiciatis facilis magnam id. Incidunt ducimus ipsam deleniti unde ad.
+					Quisquam ipsa minus, quaerat deserunt veritatis culpa labore voluptas similique
+					quos tempore beatae. Repellat ducimus reprehenderit provident tempore nihil,
+					eaque quas inventore iure necessitatibus aperiam sapiente natus quae. Quam nulla
+					rerum assumenda. Ullam ea facilis modi non unde iure odio, nulla veniam dolorum,
+					est quia itaque assumenda earum provident eum ipsam sequi magnam nobis, eos
+					quam? Unde, ut facilis.
+				</p>
+			</section>
 
-      <section
-        class="flow full-width"
-        style="
-          padding-block-end: 6rem;
-          background-image: url('https://picsum.photos/id/29/2000');
-          background-size: cover;
-        "
-      >
-        <div class="h1">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut beatae atque totam
-          recusandae facere a?
-        </div>
+			<section
+				class="flow full-width"
+				style="
+					padding-block-end: 6rem;
+					background-image: url('https://picsum.photos/id/29/2000');
+					background-size: cover;
+				">
+				<div class="h1">
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut beatae atque totam
+					recusandae facere a?
+				</div>
 
-        <button
-          class="shadow"
-          style="margin-inline: auto; font-size: 1.5rem; border: 4px solid white"
-        >
-          Let's Go!
-        </button>
-      </section>
+				<button
+					class="shadow"
+					style="margin-inline: auto; font-size: 1.5rem; border: 4px solid white">
+					Let's Go!
+				</button>
+			</section>
 
-      <section class="flow">
-        <h2>Heading Two</h2>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima, alias! Quae
-          officiis culpa, eos sit ducimus exercitationem ratione nam laboriosam quaerat
-          temporibus voluptas reiciendis saepe voluptate reprehenderit hic esse, provident
-          labore perspiciatis facilis magnam id. Incidunt ducimus ipsam deleniti unde ad.
-          Quisquam ipsa minus, quaerat deserunt veritatis culpa labore voluptas similique
-          quos tempore beatae. Repellat ducimus reprehenderit provident tempore nihil,
-          eaque quas inventore iure necessitatibus aperiam sapiente natus quae. Quam nulla
-          rerum assumenda. Ullam ea facilis modi non unde iure odio, nulla veniam dolorum,
-          est quia itaque assumenda earum provident eum ipsam sequi magnam nobis, eos
-          quam? Unde, ut facilis.
-        </p>
+			<section class="flow">
+				<h2>Heading Two</h2>
+				<p>
+					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima, alias! Quae
+					officiis culpa, eos sit ducimus exercitationem ratione nam laboriosam quaerat
+					temporibus voluptas reiciendis saepe voluptate reprehenderit hic esse, provident
+					labore perspiciatis facilis magnam id. Incidunt ducimus ipsam deleniti unde ad.
+					Quisquam ipsa minus, quaerat deserunt veritatis culpa labore voluptas similique
+					quos tempore beatae. Repellat ducimus reprehenderit provident tempore nihil,
+					eaque quas inventore iure necessitatibus aperiam sapiente natus quae. Quam nulla
+					rerum assumenda. Ullam ea facilis modi non unde iure odio, nulla veniam dolorum,
+					est quia itaque assumenda earum provident eum ipsam sequi magnam nobis, eos
+					quam? Unde, ut facilis.
+				</p>
 
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima, alias! Quae
-          officiis culpa, eos sit ducimus exercitationem ratione nam laboriosam quaerat
-          temporibus voluptas reiciendis saepe voluptate reprehenderit hic esse, provident
-          labore perspiciatis facilis magnam id. Incidunt ducimus ipsam deleniti unde ad.
-          Quisquam ipsa minus, quaerat deserunt veritatis culpa labore voluptas similique
-          quos tempore beatae. Repellat ducimus reprehenderit provident tempore nihil,
-          eaque quas inventore iure necessitatibus aperiam sapiente natus quae. Quam nulla
-          rerum assumenda. Ullam ea facilis modi non unde iure odio, nulla veniam dolorum,
-          est quia itaque assumenda earum provident eum ipsam sequi magnam nobis, eos
-          quam? Unde, ut facilis.
-        </p>
-      </section>
+				<p>
+					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima, alias! Quae
+					officiis culpa, eos sit ducimus exercitationem ratione nam laboriosam quaerat
+					temporibus voluptas reiciendis saepe voluptate reprehenderit hic esse, provident
+					labore perspiciatis facilis magnam id. Incidunt ducimus ipsam deleniti unde ad.
+					Quisquam ipsa minus, quaerat deserunt veritatis culpa labore voluptas similique
+					quos tempore beatae. Repellat ducimus reprehenderit provident tempore nihil,
+					eaque quas inventore iure necessitatibus aperiam sapiente natus quae. Quam nulla
+					rerum assumenda. Ullam ea facilis modi non unde iure odio, nulla veniam dolorum,
+					est quia itaque assumenda earum provident eum ipsam sequi magnam nobis, eos
+					quam? Unde, ut facilis.
+				</p>
+			</section>
 
-      <div class="full-width flow ui-components gray">
-        <div class="flex" style="justify-content: unset">
-          <section class="flow flex-1">
-            <h2>Todo List</h2>
-            <div x-html="getSlice('todos.html')" />
-          </section>
+			<div class="full-width flow ui-components gray">
+				<div class="flex" style="justify-content: unset">
+					<section class="flow flex-1">
+						<h2>Todo List</h2>
+						<div x-html="getSlice('todos.html')" />
+					</section>
 
-          <section class="flow flex-1">
-            <h2>Tabs</h2>
-            <div x-html="getSlice('tabs.html')" />
-          </section>
-        </div>
+					<section class="flow flex-1">
+						<h2>Tabs</h2>
+						<div x-html="getSlice('tabs.html')" />
+					</section>
+				</div>
 
-        <div class="flex" style="justify-content: unset">
-          <section class="flow flex-1">
-            <h2>Masked Input</h2>
-            <div x-html="getSlice('phone.html')" />
-          </section>
+				<div class="flex" style="justify-content: unset">
+					<section class="flow flex-1">
+						<h2>Masked Input</h2>
+						<div x-html="getSlice('phone.html')" />
+					</section>
 
-          <section class="flow flex-1">
-            <h2>Modal</h2>
-            <div x-html="getSlice('modal.html')" />
-          </section>
-        </div>
+					<section class="flow flex-1">
+						<h2>Modal</h2>
+						<div x-html="getSlice('modal.html')" />
+					</section>
+				</div>
 
-        <section class="flow">
-          <h2>Accordion</h2>
-          <div class="flow" x-html="getSlice('accordion.html')" />
-        </section>
+				<section class="flow">
+					<h2>Accordion</h2>
+					<div class="flow" x-html="getSlice('accordion.html')" />
+				</section>
 
-        <section class="flow">
-          <h2>Posts</h2>
-          <div x-html="getSlice('posts.html')" />
-        </section>
-      </div>
-    </main>
+				<section class="flow">
+					<h2>Posts</h2>
+					<div x-html="getSlice('posts.html')" />
+				</section>
+			</div>
+		</main>
 
-    <footer class="content-grid accent" x-html="getSlice('footer.html')"></footer>
-  </body>
+		<footer class="content-grid accent" x-html="getSlice('footer.html')"></footer>
+	</body>
 </html>
